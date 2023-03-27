@@ -12,7 +12,7 @@
 
 
         public function __construct(){
-
+            //parent::connect(); ici parent = app -> DAO et appel la function connect() 
             parent::connect();
         }
 
