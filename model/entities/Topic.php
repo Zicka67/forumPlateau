@@ -7,11 +7,13 @@
 
         private $id;
         private $title;
+        private $creationDate;
+        private $category;
         private $user;
-        private $creationdate;
         private $closed;
 
-        public function __construct($data){         
+        public function __construct($data){     
+                //hydrate pour remplir les propriétés de l'objet Topic avec les données en DB    
             $this->hydrate($data);        
         }
  
@@ -75,13 +77,13 @@
                 return $this;
         }
 
-        public function getCreationdate(){
-            $formattedDate = $this->creationdate->format("d/m/Y, H:i:s");
+        public function getCreationDate(){
+            $formattedDate = $this->creationDate->format("d/m/Y, H:i:s");
             return $formattedDate;
         }
 
-        public function setCreationdate($date){
-            $this->creationdate = new \DateTime($date);
+        public function setCreationDate($date){
+            $this->creationDate = new \DateTime($date);
             return $this;
         }
 
@@ -101,6 +103,24 @@
         public function setClosed($closed)
         {
                 $this->closed = $closed;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of category
+         */
+        public function getCategory()
+        {
+                return $this->category;
+        }
+
+        /**
+         * Set the value of category
+         */
+        public function setCategory($category): self
+        {
+                $this->category = $category;
 
                 return $this;
         }
