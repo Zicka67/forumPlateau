@@ -12,29 +12,36 @@
      */
     abstract class DAO{
 
-        private static $host   = 'localhost';
+        //Problème avec le $host erreur résolu par : mysql:host=127.0.0.1;port=3306 et no, juste 'localhost'
+        private static $host   = 'mysql:host=127.0.0.1;port=3306';
         private static $dbname = 'forumgk';
         private static $dbuser = 'root';
         private static $dbpass = '';
-
         private static $bdd;
 
         /**
          * cette méthode permet de créer l'unique instance de PDO de l'application
          */
         public static function connect(){
-            
+            // var_dump(self::$host); die;
             self::$bdd = new \PDO(
                 self::$host.';dbname='.self::$dbname,
                 self::$dbuser,
-                self::$dbpass,
-                array(
-                    \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
-                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
-                )   
-            );
-        }
+                
+                        self::$dbpass,
+                
+                        array(
+                
+                          \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
+                
+                          \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                
+                          \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+                
+                        ) 
+                
+                      );
+            }
 
         public static function insert($sql){
             try{
