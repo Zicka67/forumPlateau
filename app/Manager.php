@@ -13,16 +13,21 @@
          * @param array $order an array with field and order option
          * @return Collection a collection of objects hydrated by DAO, which are results of the request sent
          */
+
+         //Fonction appelée findAll qui prend un paramètre optionnel $order et renvoie un ensemble de résultats. 
         public function findAll($order = null){
 
+            //Si order est vrai "ORDER BY ".$order[0]. " ".$order[1] SINON vide
             $orderQuery = ($order) ?                 
                 "ORDER BY ".$order[0]. " ".$order[1] :
                 "";
 
+            //Request SQL pour selectionner all de $this->tableName. a comme alias
             $sql = "SELECT *
                     FROM ".$this->tableName." a
                     ".$orderQuery;
 
+            //return le résultat avec 2 arguments : le résultat de select sur la class DAO et $this->tableName
             return $this->getMultipleResults(
                 DAO::select($sql), 
                 $this->className
