@@ -11,14 +11,13 @@
     class ForumController extends AbstractController implements ControllerInterface{
 
         public function index(){
-          
-
-           $topicManager = new TopicManager();
-
+            $topicManager = new TopicManager();
+            // $topicManager->findAll(); //on peut également ajouter une request SQL pour tirer par exemple
+            
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
-                    "topics" => $topicManager->findAll(["creationdate", "DESC"])
+                    "topics" => $topicManager->findAll(["creationDate", "DESC"])//on peut également ajouter une request SQL pour tirer par exemple
                 ]
             ];
         
