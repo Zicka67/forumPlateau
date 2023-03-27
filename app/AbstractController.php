@@ -8,9 +8,11 @@
         public function redirectTo($ctrl = null, $action = null, $id = null){
 
             if($ctrl != "home"){
+                //correction conv forum teams à vérifier pk
+                $url = "index.php";
                 $url = $ctrl ? "/".$ctrl : "";
-                $url.= $action ? "/".$action : "";
-                $url.= $id ? "/".$id : "";
+                $url.= $action ? "action=".$action : "";
+                $url.= $id ? "&id".$id : "";
                 $url.= ".html";
             }
             else $url = "/";
