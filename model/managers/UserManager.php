@@ -1,5 +1,6 @@
 <?php
     namespace Model\Managers;
+     //Les class managers gérent les opérations CRUD
     
     use App\Manager;
     use App\DAO;
