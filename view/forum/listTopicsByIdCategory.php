@@ -3,7 +3,7 @@ $topics = $result["data"]["topics"];
 $category = $result["data"]["category"];
 ?>
 
-<h1>liste topics <?=$category->getLabel()?></h1>
+<h1>liste des topics <?=$category->getLabel()?></h1>
 <!-- On va chercher dans le construct getLabel avec la $category qui a accées aux data -->
 
 <?php

@@ -1,11 +1,12 @@
 <?php
 $posts = $result["data"]['posts'];
 $topic = $result["data"]['topic'];
+
 ?>
 
 
 
-<h1>liste post dans le topic <?= $topic->getTitle() ?></h1>
+<h1>La liste des messages dans le <?= $topic->getTitle() ?></h1>
 
 <?php
 if(!$posts){

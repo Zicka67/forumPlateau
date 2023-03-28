@@ -4,7 +4,7 @@ $topics = $result["data"]["topics"];
 
 ?>
 
-<h1>liste topics</h1>
+<h1>liste des topics</h1>
 
 <?php
 if(!$topics){
