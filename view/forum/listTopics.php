@@ -1,20 +1,29 @@
 <?php
 
-$topics = $result["data"]['topics'];
-    
+$topics = $result["data"]["topics"];
+
 ?>
 
 <h1>liste topics</h1>
 
 <?php
-foreach($topics as $topic ){
+if(!$topics){
+    echo "vide pour le moment";
+} else {    
+    
+    foreach($topics as $topic ){
+        
+        ?>
+        <p><?=$topic->getTitle()?></p>
+        <p>Category : <?=$topic->getCategory()?></p>
+        <p>Crée par <?=$topic->getUser()?> le <?=$topic->getCreationDate()?></p>
+        <?php
+    }
+} 
 
-    ?>
-    <p><?=$topic->getTitle()?></p>
-    <p>Category : <?=$topic->getCategory()?></p>
-    <p>Crée par <?=$topic->getUser()?> le <?=$topic->getCreationDate()?></p>
-    <?php
-}
 
 
-  
+
+
+
+
