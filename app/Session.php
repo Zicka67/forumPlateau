@@ -29,14 +29,17 @@
         /**
         *   met un user dans la session (pour le maintenir connecté)
         */
+        // permet de stocker un objet User dans la session.
         public static function setUser($user){
             $_SESSION["user"] = $user;
         }
-
+        
+        //permet de récupérer l'objet User de la session. Si l'objet existe, il est retourné, sinon la méthode retourne false
         public static function getUser(){
             return (isset($_SESSION['user'])) ? $_SESSION['user'] : false;
         }
 
+        //permet de vérifier si l'utilisateur actuellement connecté a le rôle "ROLE_ADMIN"
         public static function isAdmin(){
             if(self::getUser() && self::getUser()->hasRole("ROLE_ADMIN")){
                 return true;
