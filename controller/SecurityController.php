@@ -63,4 +63,28 @@ class SecurityController extends AbstractController implements ControllerInterfa
         
     }
     
+    //Début de la function se connecter 
+    public function login() {
+        
+        // Si connect est non null
+        if(isset($_POST['connect'])) {
+            
+            //On filtre
+            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+            //On filtre pas le password ( je pense )
+            $password = $_POST["password"];
+            
+            // si c'est ca existe
+            if($email) {
+                if($password) {
+                    // Link au userManager
+                    $userManager = new UserManager();
+
+                    // relier le mdp a une adresse mail ?
+                    // relier a l'user
+                }
+            }
+            
+        }
+    }
 }
