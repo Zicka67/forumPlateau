@@ -43,6 +43,9 @@
                             <a href="./view/security/login.php">Connexion</a>
                             <a href="./view/security/register.php">Inscription</a>
                             <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
+                            <a href="index.php?ctrl=forum&action=listCategory">la liste des categories</a>
+                            <a href="index.php?ctrl=forum&action=listTopicsByCategory">la liste des topics par category</a>
+                            <a href="index.php?ctrl=forum&action=listPostByTopic">la liste des posts par topic</a>
                         <?php
                         }
                    
