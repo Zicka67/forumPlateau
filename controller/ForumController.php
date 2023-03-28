@@ -79,6 +79,23 @@ class ForumController extends AbstractController implements ControllerInterface
                         ];  
                     }
                     
+                    // Add un label
+                    public function ajoutCategory() {
+                        
+                        $label= filter_input(INPUT_POST, "label", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                        
+                        
+                        $categoryManager = new CategoryManager();
+                        
+                        // si les valeurs existent
+                        if($label) {
+                            $newLabel=["label"=>$label];
+                            $categoryManager->add($newLabel);
+                            // on redirige
+                            $this->redirectTo("forum","listCategories");
+                        }
+                    }
+                    
                 }                   
                 
                 
