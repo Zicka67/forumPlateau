@@ -54,8 +54,10 @@
             
             <!-- $page qui était $content dans cinema, ob start + ob clean dans l'index -->
             <main id="forum">
+            <!-- Le contenu entre le header et le footer -->
                 <?= $page ?>
             </main>
+
         </div>
         <footer>
             <p>&copy; 2020 - Forum CDA - <a href="/home/forumRules.html">Règlement du forum</a> - <a href="">Mentions légales</a></p>
