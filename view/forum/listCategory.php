@@ -1,22 +1,21 @@
 <?php
 
-$topics = $result["data"]['category'];
+$categories = $result["data"]["category"];
 
 ?>
 
-<h1>liste topics</h1>
+<h1>liste Category</h1>
 
 <?php
-if(!$topics){
+if(!$categories){
     echo "vide pour le moment";
 } else {    
     
-    foreach($topics as $topic ){
+    foreach($categories as $category ){
         
         ?>
-        <p><?=$topic->getTitle()?></p>
-        <p>Category : <?=$topic->getCategory()?></p>
-        <p>Crée par <?=$topic->getUser()?> le <?=$topic->getCreationDate()?></p>
+        <p><?=$category->getId()?> - <?=$category->getLabel()?></p>
+
         <?php
     }
 } 
