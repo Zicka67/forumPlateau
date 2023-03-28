@@ -1,22 +1,34 @@
 <?php
-    namespace Model\Managers;
-    //Les class managers gérent les opérations CRUD
+namespace Model\Managers;
+//Les class managers gérent les opérations CRUD
+
+use App\Manager;
+use App\DAO;
+
+class CategoryManager extends Manager{
     
-    use App\Manager;
-    use App\DAO;
-
-    class CategoryManager extends Manager{
-
-           //className = nom de votre classe du dossier "entities"
-           protected $className = "Model\Entities\Category";
-           //nom de la table en base de données
-           protected $tableName = "category";
-
-           public function __construct(){
-            //parent::connect(); ici parent = app -> DAO et appel la function connect() 
-            parent::connect();
-        }
-
-
-
+    //className = nom de votre classe du dossier "entities"
+    protected $className = "Model\Entities\Category";
+    //nom de la table en base de données
+    protected $tableName = "category";
+    
+    public function __construct(){
+        //parent::connect(); ici parent = app -> DAO et appel la function connect() 
+        parent::connect();
     }
+    
+    //Changer le label ?
+    public function editLabel($id, $label) {
+        
+        // requête SQL
+        $sql = "
+        UPDATE category
+        SET label = :label
+        WHERE id_category = :id
+        ";
+        
+        // relie à la fonction déjà faite dans DAO qui update la DB
+        DAO::update($sql, ["id"=>$id,"label"=>$label]);
+    }
+    
+}
