@@ -4,7 +4,7 @@
     use App\Manager;
     use App\DAO;
 
-    class PostManager extends Manager{
+    class UserManager extends Manager{
 
            //className = nom de votre classe du dossier "entities"
            protected $className = "Model\Entities\User";
