@@ -26,42 +26,62 @@ class ForumController extends AbstractController implements ControllerInterface
                 ]
             ];
             
-    }
+        }
         
         // Liste Categorie
-        public function listCategory() {
+        public function listCategories() {
             
             // Link au Manager
             $categoryManager = new CategoryManager();
             
             
             return [
-                "view" => VIEW_DIR."forum/listCategory.php",
+                "view" => VIEW_DIR."forum/listCategories.php",
                 "data" => [
-                    "category" => $categoryManager->findAll(["label","ASC"]),
+                    "categories" => $categoryManager->findAll(["label","ASC"]),
                     ]
                 ];  
-    }
+            }
             
-        // Liste topics par categorie
-        public function listTopicsByCategory() {
+            // Liste topics par categorie
+            public function listTopicsByIdCategory($id) {
                 
                 // Link au Manager
                 $categoryManager = new CategoryManager();
                 $topicManager = new TopicManager();
-
+                
                 
                 
                 return [
-                    "view" => VIEW_DIR."forum/listTopicsByCategory.php",
+                    "view" => VIEW_DIR."forum/listTopicsByIdCategory.php",
                     "data" => [
-                        "category" => $categoryManager->findAll(["label","ASC"]),
-                        "topic" => $topicManager->findAll(["title","ASC"]),
+                        "category" => $categoryManager->findOneById($id),
+                        "topics" => $topicManager->getTopicsByCategory($id),
                         ]
-                    ];  
-    }
-
+                    ]; 
+                }
                 
-}
-    
-    
+                
+                // Liste post par topic
+                public function listPostsByIdTopic($id) {
+                    
+                    // variable qui relie au manager
+                    $postManager = new PostManager();
+                    $topicManager = new TopicManager();
+                    
+                    // renvoie 
+                    return [
+                        "view" => VIEW_DIR."forum/listPostsByIdTopic.php",
+                        "data" => [
+                            "posts" => $postManager->getPostsByIdTopic($id),
+                            "topic" => $topicManager->findOneById($id)
+                            ]
+                        ];  
+                    }
+                    
+                }                   
+                
+                
+                
+                
+                
