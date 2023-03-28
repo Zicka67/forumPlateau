@@ -34,6 +34,7 @@
             );
         }
        
+        //Selectionne une ligne d'une table d'un ID
         public function findOneById($id){
 
             $sql = "SELECT *
@@ -49,6 +50,7 @@
 
         //$data = ['username' => 'Squalli', 'password' => 'dfsyfshfbzeifbqefbq', 'email' => 'sql@gmail.com'];
 
+        //Ajouter des donnés a un table
         public function add($data){
             //$keys = ['username' , 'password', 'email']
             $keys = array_keys($data);
@@ -72,6 +74,7 @@
             }
         }
         
+        // Supprimer des lignes a partir d'un id
         public function delete($id){
             $sql = "DELETE FROM ".$this->tableName."
                     WHERE id_".$this->tableName." = :id
@@ -86,6 +89,7 @@
             }
         }
         
+        // Afficher plusieurs résultats
         protected function getMultipleResults($rows, $class){
 
             if(is_iterable($rows)){
@@ -94,6 +98,7 @@
             else return null;
         }
 
+        // Afficher ou pas un résultat
         protected function getOneOrNullResult($row, $class){
 
             if($row != null){
@@ -102,6 +107,7 @@
             return false;
         }
 
+        // Récupère qu'une seule valeur 
         protected function getSingleScalarResult($row){
 
             if($row != null){
