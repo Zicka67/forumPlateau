@@ -56,7 +56,7 @@
         ob_start();//démarre un buffer (tampon de sortie)
         /*la vue s'insère dans le buffer qui devra être vidé au milieu du layout*/
         include($result['view']);
-        /*je mets cet affichage dans une variable*/
+        /*je mets cet affichage dans une variable $page*/
         $page = ob_get_contents();
         /*j'efface le tampon*/
         ob_end_clean();
