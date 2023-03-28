@@ -20,5 +20,21 @@
             parent::connect();
         }
 
+        // Liste topics par categorie
+        public function getTopicsByCategory($id) {
+            parent::connect();
+            $sql ="
+            SELECT * 
+                FROM ".$this->tableName." t
+                WHERE t.category_id = :id
+                ORDER BY creationDate DESC
+            ";
+            
+            return $this->getMultipleResults(
+                DAO::select($sql, ['id' => $id]), 
+                $this->className
+            );
+        }
+
 
     }
