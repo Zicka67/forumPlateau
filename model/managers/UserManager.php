@@ -17,6 +17,7 @@ class UserManager extends Manager{
         parent::connect();
     }
     
+     //Trouver un user par son mail id
     public function findOneByEmail($email) {
         
         $sql = "SELECT *
@@ -28,6 +29,22 @@ class UserManager extends Manager{
         //Si un seul objet --> getOneOrNullResult
         return $this->getOneOrNullResult(
             DAO::select($sql, ['email' =>$email, false]),
+            $this->className
+        );
+    }
+
+    //Trouver un user par son pseudo id
+    public function findOneByUser($pseudo) {
+        
+        $sql = "SELECT *
+        FROM ".$this->tableName." p
+        WHERE p.pseudo_id = :id_pseudo
+        ";
+        
+        //Si plusieurs lignes --> getMultipleResults
+        //Si un seul objet --> getOneOrNullResult
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['pseudo' =>$pseudo, false]),
             $this->className
         );
     }
