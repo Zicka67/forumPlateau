@@ -41,7 +41,7 @@
                         else{
                             ?>
                             <a href="./view/security/login.php">Connexion</a>
-                            <a href="./view/security/register.php">Inscription</a>
+                            <a href="index.php?ctrl=Security&action=addUser">Inscription</a>
                             <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
                         <?php
                         }
