@@ -19,7 +19,7 @@
             <header>
                 <nav>
                     <div id="nav-left">
-                        <a href="http://localhost/forumPlateau/">Accueil</a>
+                        <a href="index.php">Accueil</a>
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
@@ -40,7 +40,7 @@
                         }
                         else{
                             ?>
-                            <a href="index.php?ctrl=Security&action=profil"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                            <!-- <a href="index.php?ctrl=Security&action=profil"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a> -->
                             <a href="index.php?ctrl=Security&action=login">Connexion</a>
                             <a href="index.php?ctrl=Security&action=addUser">Inscription</a>
                             <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
