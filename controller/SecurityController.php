@@ -44,6 +44,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 "pseudo"=>$pseudo,
                 "email"=>$email,
                 "password"=>$passwordHash,
+                "role"=>"user",
             ];
             // execution de la fonction pré-implémenté add($data)
             $result = $userManager->add($user); 
