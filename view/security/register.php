@@ -10,7 +10,8 @@
 </head>
 <body>
 
-<form method="POST" action="?controller=Security&action=addUser">
+<form method="POST" action="index.php?ctrl=Security&action=addUser">
+
 
   <div>
     <label for="pseudo">Pseudo :</label>
