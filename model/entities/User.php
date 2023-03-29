@@ -12,6 +12,7 @@ final class User extends Entity{
         private $dateCreate;
         private $email;
         private $role;
+        private $status;
         
         public function __construct($data){     
                 //hydrate pour remplir les propriétés de l'objet Topic avec les données en DB    
@@ -123,6 +124,24 @@ final class User extends Entity{
         {
                 $this->role = $role;
                 
+                return $this;
+        }
+
+        /**
+         * Get the value of status
+         */
+        public function getStatus()
+        {
+                return $this->status;
+        }
+
+        /**
+         * Set the value of status
+         */
+        public function setStatus($status): self
+        {
+                $this->status = $status;
+
                 return $this;
         }
 }
