@@ -14,7 +14,7 @@ if(!$topics){
     
     foreach($topics as $topic ){
         ?>
-        <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>"> <br>Title: -<?= $topic->getTitle() ?>   <?= $topic->getUser() ?>  <br></a>
+        <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>"> <br>Title: -<?= $topic->getTitle()?><?= $topic->getUser() ?><br></a>
         <?php
     }
     
