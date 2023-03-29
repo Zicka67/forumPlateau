@@ -21,6 +21,10 @@ class SecurityController extends AbstractController implements ControllerInterfa
     //Inscription
     public function addUser()
     {
+        
+        // Insérer les données dans la DB
+        $userManager = new UserManager(); //Relie à la class UserManager
+        
         if (isset($_POST['register'])) {
             // Récupérer les données soumises par le formulaire
             $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -35,9 +39,6 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 die("Les mots de passe ne correspondent pas");
             }
             
-            // Insérer les données dans la DB
-            $userManager = new UserManager(); //Relie à la class UserManager
-
             $passwordHash = password_hash($password, PASSWORD_DEFAULT); // Crypter le mot de passe avant de l'insérer
             $user=[
                 "pseudo"=>$pseudo,
@@ -50,60 +51,81 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 die("Une erreur s'est produite lors de l'ajout de l'utilisateur.");
             }
             // Session::addFlash('success', 'vous êtes bien enregistré !');
-
+            
             // redirige vers la page d'accueil
             $this->redirectTo('home');  
             
             // Rediriger l'utilisateur vers la page de connexion
             header("Location: login.php");
-
+            
         }
         return ["view" => VIEW_DIR. "security/register.php"];
     }
     
     //Se connecter 
     public function login() {
-    //    echo "dqdqz"; die;
-       
-        // Si connect est non null
-        if(isset($_POST['login'])) {
-            
-            //On filtre
-            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-            //On filtre pas le password ( je pense )
-            $password = $_POST["password"];
-            
-            // si c'est ca existe
-            if($email) {
-                if($password) {
-                    // Link au userManager
-                    $userManager = new UserManager();
-                  
-                    // a corriger, passer par finonebyemail par directement par le manager
-                    $getPassword = $userManager->findOneByEmail($email)->getPassword($email);
-                    die;
-                    // relier a l'user
-                    $getUser = $userManager->findOneByEmail($email);
+        
+        //Crée une nouvelle instance de la class UserManager, qui est responsable de la gestion des user
+        $userManager = new UserManager();
+        
+            // Si connect est non null if(isset($_POST['login'])) { ne fonctionne pas !
+            // Vérifie s'il y a des données POST envoyées au script (soumission de formulaire)
+            if(isset($_POST)) {
+                
+                //Récupère le mail soumis à partir des données POST, en le filtrant
+                $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
 
-                    // si il y a un utilisateur
-                    if($getUser) {
-                        // comparaison (hashage) du mot de passe de la DB et celui du formulaire
-                        $checkPassword = password_verify($password, $getPassword['password']);
-    
-                        // si le pass est bon
-                        if($checkPassword){
-                            // connection à la session de l'utilisateur
-                            Session::setUser($getUser);
-                            Session::addFlash('success', 'Bienvenue');
-                            $this->redirectTo('home');
-                        } //message si erreur mot de pass
+                //Récupère le password soumis à partir des données POST, en le filtrant
+                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                
+                // Vérifie si le mail + password existent après les filtres
+                if($email && $password) {
+                    
+                    // Récupère le password d'un user dans la base de données à l'aide de son email
+                    $recupPassword = $userManager->findOneByEmail($email);
+                    
+                    //Vérifie si un user avec le mail donnée existe 
+                    if($recupPassword) {
                         
-                    }//message si erreur user, pas de compte lié
-                }//message si erreur mot de pass
-            }//message si erreur email, mail sans compte
-          
+                        // Récupère le pawword haché de l'utilisateur 
+                        $hashPassword = $recupPassword->getPassword();
+                        
+                        // On utilise findOneByEmail() de la class UserManager pour trouver le user correspondant 
+                        // au mail (en argument) saisie par le user. Le user est stocké dans la variable $user
+                        $user = $userManager->findOneByEmail($email);
+                        //Vérifie si le mot de passe de l'user = a celui en DB, si oui on continue 
+                        if (password_verify($password, $hashPassword)) {
+                            
+                            // vérifie si le user est autorisé à se connecter en utilisant la méthode getStatus() de la classe User
+                            // Si l'utilisateur est autorisé, le code à l'intérieur de la condition est exécuté
+                            if ($user->getStatus()) {
+                                
+                                //Enregistre le user dans la session en utilisant la méthode setUser() de la classe Session
+                                Session::setUser($user);                              
+                                
+                                // Ajoute un message de succès à la session en utilisant la méthode addFlash() de la classe Session
+                                Session::addFlash("success", "Login successfully");
+                                return [
+                                    "view" => VIEW_DIR . "home.php",
+                                    "data" => [
+                                        "user" => $user,
+                                        ]
+                                    ];
+                                } else {
+                                    Session::addFlash('error', "You're banned !");
+                                    $this->redirectTo("security", "index");
+                                }
+                            } else {
+                                Session::addFlash('error', "Invalid credentials");
+                                $this->redirectTo("security", "index");
+                            }
+                        } else {
+                            Session::addFlash('error', "Invalid credentials");
+                            $this->redirectTo("security", "login");
+                        }    
+                    }
+                    return ["view" => VIEW_DIR . "security/login.php"];
+                }
+                
+            }
         }
-          // renvoie à la page de connexion si le formulaire est vide
-          return ["view" => VIEW_DIR . "security/login.php"];
-    }
-}
