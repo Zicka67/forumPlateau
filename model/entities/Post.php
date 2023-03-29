@@ -18,7 +18,7 @@ final class Post extends Entity{
         }
         
         public function getDatePost(){
-                $formattedDate = $this->datePost->format("d/m/Y, H:i:s");
+                $formattedDate = $this->datePost->format("d/m/Y");
                 return $formattedDate;
         }
         
