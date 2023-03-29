@@ -20,6 +20,8 @@ forumPlateaupublic function index(){}
         //     die();
 
         // }
+        
+        DOSENT WORK AND TRY TO FIX IT WITH :
 
         public function redirectTo($ctrl = null, $action = null, $id = null){
 
