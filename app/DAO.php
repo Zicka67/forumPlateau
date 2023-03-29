@@ -98,6 +98,10 @@
         public static function select($sql, $params = null, bool $multiple = true):?array
         {
             try{
+                //test debug, problème : un élément en trop dans le tab param -> dans findOneByEmail ?
+                // echo "SQL Query: " . $sql . PHP_EOL;
+                // echo "Params: ";
+                // print_r($params);
                 $stmt = self::$bdd->prepare($sql);
                 $stmt->execute($params);
               
