@@ -22,13 +22,13 @@ class UserManager extends Manager{
         
         $sql = "SELECT *
         FROM ".$this->tableName." p
-        WHERE p.email_id = :id_email
+        WHERE p.email = :email
         ";
         
         //Si plusieurs lignes --> getMultipleResults
         //Si un seul objet --> getOneOrNullResult
         return $this->getOneOrNullResult(
-            DAO::select($sql, ['email' =>$email, false]),
+            DAO::select($sql, ['email' =>$email]),
             $this->className
         );
     }
@@ -40,6 +40,7 @@ class UserManager extends Manager{
         FROM ".$this->tableName." p
         WHERE p.pseudo_id = :id_pseudo
         ";
+        //WHERE p.pseudo = :pseudo ?
         
         //Si plusieurs lignes --> getMultipleResults
         //Si un seul objet --> getOneOrNullResult
