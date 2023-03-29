@@ -18,6 +18,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         
     }
     
+    //Inscription
     public function addUser()
     {
         if (isset($_POST['register'])) {
@@ -26,6 +27,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $confirm_password = $_POST['confirm_password'];
+            // $role ?
             
             // Valider les données
             if ($password != $confirm_password) {
@@ -35,39 +37,36 @@ class SecurityController extends AbstractController implements ControllerInterfa
             
             // Insérer les données dans la DB
             $userManager = new UserManager(); //Relie à la class UserManager
-            
+
             $passwordHash = password_hash($password, PASSWORD_DEFAULT); // Crypter le mot de passe avant de l'insérer
             $user=[
                 "pseudo"=>$pseudo,
                 "email"=>$email,
                 "password"=>$passwordHash,
             ];
-            
             // execution de la fonction pré-implémenté add($data)
             $result = $userManager->add($user); 
             if (!$result) {
                 die("Une erreur s'est produite lors de l'ajout de l'utilisateur.");
             }
-            Session::addFlash('success', 'vous êtes bien enregistré !');
+            // Session::addFlash('success', 'vous êtes bien enregistré !');
+
             // redirige vers la page d'accueil
             $this->redirectTo('home');  
             
-            // $user->pseudo = $pseudo;
-            // $user->email = $email;
-            // $user->password = password_hash($password, PASSWORD_DEFAULT); // Crypter le mot de passe avant de l'insérer
-            // $user->save();
-            
             // Rediriger l'utilisateur vers la page de connexion
             header("Location: login.php");
+
         }
-        
+        return ["view" => VIEW_DIR. "security/register.php"];
     }
     
-    //Début de la function se connecter 
+    //Se connecter 
     public function login() {
-        
+    //    echo "dqdqz"; die;
+       
         // Si connect est non null
-        if(isset($_POST['connect'])) {
+        if(isset($_POST['login'])) {
             
             //On filtre
             $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
@@ -79,12 +78,32 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 if($password) {
                     // Link au userManager
                     $userManager = new UserManager();
-
-                    // relier le mdp a une adresse mail ?
+                  
+                    // a corriger, passer par finonebyemail par directement par le manager
+                    $getPassword = $userManager->findOneByEmail($email)->getPassword($email);
+                    die;
                     // relier a l'user
-                }
-            }
-            
+                    $getUser = $userManager->findOneByEmail($email);
+
+                    // si il y a un utilisateur
+                    if($getUser) {
+                        // comparaison (hashage) du mot de passe de la DB et celui du formulaire
+                        $checkPassword = password_verify($password, $getPassword['password']);
+    
+                        // si le pass est bon
+                        if($checkPassword){
+                            // connection à la session de l'utilisateur
+                            Session::setUser($getUser);
+                            Session::addFlash('success', 'Bienvenue');
+                            $this->redirectTo('home');
+                        } //message si erreur mot de pass
+                        
+                    }//message si erreur user, pas de compte lié
+                }//message si erreur mot de pass
+            }//message si erreur email, mail sans compte
+          
         }
+          // renvoie à la page de connexion si le formulaire est vide
+          return ["view" => VIEW_DIR . "security/login.php"];
     }
 }
