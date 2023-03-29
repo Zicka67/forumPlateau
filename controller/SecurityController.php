@@ -69,7 +69,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         //Crée une nouvelle instance de la class UserManager, qui est responsable de la gestion des user
         $userManager = new UserManager();
         
-            // Si connect est non null if(isset($_POST['login'])) { ne fonctionne pas !
+            // Si connect est non null if(isset($_POST['login'])) { ne fonctionne pas ! if (!empty($_POST) && isset($_POST['login'])) { testé et ne fonctionne pas non plus 
             // Vérifie s'il y a des données POST envoyées au script (soumission de formulaire)
             if(isset($_POST)) {
                 
@@ -107,18 +107,18 @@ class SecurityController extends AbstractController implements ControllerInterfa
                                 // Ajoute un message de succès à la session en utilisant la méthode addFlash() de la classe Session
                                 Session::addFlash("success", "Login successfully");
                                 return [
-                                    "view" => VIEW_DIR . "home.php",
+                                    "view" => VIEW_DIR . "login.php",
                                     "data" => [
                                         "user" => $user,
                                         ]
                                     ];
                                 } else {
                                     Session::addFlash('error', "You're banned !");
-                                    $this->redirectTo("security", "index");
+                                    $this->redirectTo("security", "login");
                                 }
                             } else {
-                                Session::addFlash('error', "Invalid credentials");
-                                $this->redirectTo("security", "index");
+                                Session::addFlash('error', "Invalid credentialsss");
+                                $this->redirectTo("security", "login");
                             }
                         } else {
                             Session::addFlash('error', "Invalid credentials");
