@@ -39,9 +39,10 @@
             return (isset($_SESSION['user'])) ? $_SESSION['user'] : false;
         }
 
-        //permet de vérifier si l'utilisateur actuellement connecté a le rôle "ROLE_ADMIN"
+        //permet de vérifier si l'utilisateur actuellement connecté a le rôle "admin"
         public static function isAdmin(){
-            if(self::getUser() && self::getUser()->hasRole("ROLE_ADMIN")){
+           
+            if(self::getUser() && self::getUser()->hasRole("admin")){
                 return true;
             }
             return false;
