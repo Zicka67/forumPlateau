@@ -20,6 +20,7 @@ class UserManager extends Manager{
      //Trouver un user par son mail id
     public function findOneByEmail($email) {
         
+        //On stock la requete dans une var $sql
         $sql = "SELECT *
         FROM ".$this->tableName." a
         WHERE a.email = :email
@@ -63,7 +64,7 @@ class UserManager extends Manager{
     }
 
     //Trouver un user par son pseudo id
-    public function findOneByUser($pseudo) {
+    public function findOneByPseudo($pseudo) {
         
         $sql = "SELECT *
         FROM ".$this->tableName." p
