@@ -11,5 +11,5 @@ $posts = ($result["data"]['post']);
         <textarea name="text"><?= $post->getText()?></textarea>
     </label>
     <br>
-    <input type="submit" value="Modifier">
+    <input type="submit" value="Ajouter">
 </form>
