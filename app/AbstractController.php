@@ -2,6 +2,7 @@
     // Déclaration de l'espace de noms
     namespace App;
 
+    //abstraite qui sert a la redirection 
     abstract class AbstractController{
 
         public function index(){}
