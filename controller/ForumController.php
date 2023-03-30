@@ -84,24 +84,56 @@ class ForumController extends AbstractController implements ControllerInterface
     // AJOUT D'UN LABEL
     public function addCategory()
     {
+        //VERIFIER SI LE FORM EXISTE QUAND ON APPEL LA FUNCTION
+        if (isset($_POST['modifier'])) {
+            $label = filter_input(INPUT_POST, "label", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+           
 
-        $label = filter_input(INPUT_POST, "label", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $categoryManager = new CategoryManager();
 
+            // si les valeurs existent
+            if ($label) {
 
-        $categoryManager = new CategoryManager();
-
-        // si les valeurs existent
-        if ($label) {
-            $newLabel = ["label" => $label];
-            $categoryManager->add($newLabel);
-            // on redirige
-            $this->redirectTo("forum", "listCategories");
+                $newLabel = ["label" => $label];
+                $categoryManager->add($newLabel);
+                // on redirige
+                $this->redirectTo("forum", "listCategories");
+            }
         }
+        return [
+            "view" => VIEW_DIR . "forum/editCategory.php",
+            
+        ];
     }
 
-    // AJOUT D'UN TOPIC
-    public function addTopic($id)
+    public function addTopic()
     {
+        //VERIFIER SI LE FORM EXISTE QUAND ON APPEL LA FUNCTION
+        if (isset($_POST['modifier'])) {
+            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+           
+
+            $categoryManager = new CategoryManager();
+
+            // si les valeurs existent
+            if ($title) {
+
+                $newTitle = ["title" => $title];
+                $categoryManager->add($newTitle);
+                // Redirige après que la function s'est bien executée
+                $this->redirectTo("forum", "listTopics");
+            }
+        }
+        return [//Redirige au clic sur Edit un topic
+            "view" => VIEW_DIR . "forum/editTopic.php",
+            
+        ];
+    }
+    // AJOUT D'UN TOPIC
+    public function addTopicTEST($id)
+    {
+
+        if (isset($_POST['modifier'])) {
         // filtres pour la sécurité du formulaire
         $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -125,4 +157,5 @@ class ForumController extends AbstractController implements ControllerInterface
             $this->redirectTo("forum", "listTopicsByIdCategory", $id);
         }
     }
+}
 }
