@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form method="POST" action="index.php?ctrl=Security&action=login">
+<form class="registerForm" method="POST" action="index.php?ctrl=Security&action=login">
 
   <div>
     <label for="email">Email :</label>
@@ -21,7 +21,7 @@
     <input type="password" id="password" name="password" required>
   </div>
   <div>
-    <input type="submit" name="login" value="Log in">
+    <input id="button" type="submit" name="login" value="Log in">
   </div>
 
 </form>

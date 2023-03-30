@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form method="POST" action="index.php?ctrl=Security&action=addUser">
+<form class="registerForm" method="POST" action="index.php?ctrl=Security&action=addUser">
 
 
   <div>
@@ -30,7 +30,7 @@
     <input type="password" id="confirm_password" name="confirm_password" required>
   </div>
   <div>
-    <input id="" type="submit" name="register" value="Sign up">
+    <input id="button" type="submit" name="register" value="Sign up">
   </div>
 
 </form>

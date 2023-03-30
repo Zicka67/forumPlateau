@@ -4,7 +4,7 @@ $categories = $result["data"]["categories"];
 
 ?>
 
-<h1>liste des categories</h1>
+<h1 class="categoryList">liste des categories</h1>
 
 <?php
 if(!$categories){
@@ -14,8 +14,7 @@ if(!$categories){
     foreach($categories as $category ){
         
         ?>
-        <a href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"> <br> - <?=$category->getLabel()?></a>
-
+        <a class="categoryLink" href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"> <br> - <?=$category->getLabel()?></a>
         <?php
     }
 } 
