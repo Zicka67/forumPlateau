@@ -1,15 +1,27 @@
-<?php
-$category = ($result["data"]['topic']);
-?>
+<!DOCTYPE html>
+<html lang="en">
 
-<h1>Modifier le titre du topic</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier le topic</title>
+</head>
 
-<form method="post">
-    <p>
-        <label>
-            modifier le titre du topic<br>
-            <input type="text" name="title" value="<?= $category->getTitle()?>">
-        </label>
-    </p><br>
-        <input type="submit" value="Modifier">
-</form>
+<body>
+
+    <h1>EDIT TOPIC</h1>
+    
+    <form method="POST" action="index.php?ctrl=Forum&action=addTopic">
+        <p>
+            <label for="">
+                Ajouter un topic : <br>
+                <input type="text" name="title" value="">
+            </label>
+        </p><br>
+        <input type="submit" name="modifier" value="Ajouter">
+    </form>
+
+</body>
+
+</html>

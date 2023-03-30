@@ -6,34 +6,41 @@ $topic = $result["data"]['topic'];
 
 
 
-<h1>La liste des messages dans le <?= $topic->getTitle() ?></h1>
+<h1 class="categoryList">La liste des messages dans le <?= $topic->getTitle() ?></h1>
 
 <?php
-if(!$posts){
+if (!$posts) {
     echo "vide pour le moment";
-    
 } else { ?>
-    <table class="listTable">
-    <thead>
-        <tr>
-            <th>message</th>
-            <th>auteur</th>
-            <th>date</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php
-    foreach($posts as $post){
-        ?>
-        <tr>
-            <td><?= $post->getText() ?></td>
-            <td><?= $post->getUser() ?> </td>
-            <td><?= $post->getDatePost() ?></td>
-        </tr>      
+    <div class="containerPosts">
         <?php
-    } 
-    ?>
-    </tbody>
-    </table>
-    <?php
+
+        foreach ($posts as $post) {
+        ?>
+      
+            <table class="listTable">
+                <thead>
+                    <tr>
+                        <th>Message :</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?= $post->getText() ?></td>
+                    </tr>
+                <?php
+                     
+                ?>
+                </tbody>
+                <tr class="bottomInfos">
+                
+                    <?php var_dump($post->getUser()); die;?> 
+                    <th><?= $post->getUser()?></th>
+                    <th><?= $post->getDatePost() ?></th>
+                </tr>
+            </table>
+       <?php } ?>
+    </div>
+<?php
+
 } ?>
