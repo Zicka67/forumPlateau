@@ -39,8 +39,8 @@
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span><?= App\Session::getUser()?></a>
-                            <a href="/security/logout.html">Déconnexion</a>
+                            <a href="view\security\viewProfile.php"><span class="fas fa-user"></span><?= App\Session::getUser()?></a>
+                            <a href="view\security\logout.php">Déconnexion</a>
                             <?php
                         }
                         else{
