@@ -69,38 +69,39 @@ class SecurityController extends AbstractController implements ControllerInterfa
         //Crée une nouvelle instance de la class UserManager, qui est responsable de la gestion des user
         $userManager = new UserManager();
         
-            // Si connect est non null if(isset($_POST['login'])) { ne fonctionne pas ! if (!empty($_POST) && isset($_POST['login'])) { testé et ne fonctionne pas non plus 
+            // Si connect est non null if(isset($_POST['lgoin'])) { ne fonctionne pas ! if (!empty($_POST) && isset($_POST['login'])) { testé et ne fonctionne pas non plus 
             // Vérifie s'il y a des données POST envoyées au script (soumission de formulaire)
             if(isset($_POST)) {
-                
                 //Récupère le mail soumis à partir des données POST, en le filtrant
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-
+              
                 //Récupère le password soumis à partir des données POST, en le filtrant
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                
                 // Vérifie si le mail + password existent après les filtres
                 if($email && $password) {
                     
                     // Récupère le password d'un user dans la base de données à l'aide de son email
-                    $recupPassword = $userManager->findOneByEmail($email);
+                    $recupPassword = $userManager->findOneByEmail($email)->getPassword();
+          
+                    // var_dump($recupPassword);
                     
                     //Vérifie si un user avec le mail donnée existe 
                     if($recupPassword) {
                         
                         // Récupère le pawword haché de l'utilisateur 
-                        $hashPassword = $recupPassword->getPassword();
-                        
+                        $hashPassword = $recupPassword;
+                        // var_dump($hashPassword);die;
                         // On utilise findOneByEmail() de la class UserManager pour trouver le user correspondant 
                         // au mail (en argument) saisie par le user. Le user est stocké dans la variable $user
                         $user = $userManager->findOneByEmail($email);
+                        
                         //Vérifie si le mot de passe de l'user = a celui en DB, si oui on continue 
+                     
                         if (password_verify($password, $hashPassword)) {
                             
                             // vérifie si le user est autorisé à se connecter en utilisant la méthode getStatus() de la classe User
                             // Si l'utilisateur est autorisé, le code à l'intérieur de la condition est exécuté
                             if ($user->getStatus()) {
-                                
                                 //Enregistre le user dans la session en utilisant la méthode setUser() de la classe Session
                                 Session::setUser($user);                              
                                 
