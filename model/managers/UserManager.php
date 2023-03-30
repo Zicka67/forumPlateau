@@ -21,14 +21,43 @@ class UserManager extends Manager{
     public function findOneByEmail($email) {
         
         $sql = "SELECT *
-        FROM ".$this->tableName." p
-        WHERE p.email = :email
+        FROM ".$this->tableName." a
+        WHERE a.email = :email
         ";
         
         //Si plusieurs lignes --> getMultipleResults
         //Si un seul objet --> getOneOrNullResult
         return $this->getOneOrNullResult(
-            DAO::select($sql, ['email' =>$email]),
+            DAO::select($sql, ['email' => $email], false), 
+            $this->className
+        );
+    }
+
+    public function findOneById($id){
+
+        $sql = "SELECT *
+                FROM ".$this->tableName." a
+                WHERE a.id_".$this->tableName." = :id
+                ";
+
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['id' => $id], false), 
+            $this->className
+        );
+    }
+// **************** A TESTER 
+      //Trouver un user par son mdp id
+      public function findOneByPassword($password) {
+        
+        $sql = "SELECT *
+        FROM ".$this->tableName." p
+        WHERE p.password = :password
+        ";
+        
+        //Si plusieurs lignes --> getMultipleResults
+        //Si un seul objet --> getOneOrNullResult
+        return $this->getOneOrNullResult(
+            DAO::select($sql, ['email' =>$password]),
             $this->className
         );
     }
