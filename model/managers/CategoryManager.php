@@ -30,5 +30,17 @@ class CategoryManager extends Manager{
         // relie à la fonction déjà faite dans DAO qui update la DB
         DAO::update($sql, ["id"=>$id,"label"=>$label]);
     }
+
+    public function addLabel ($label) {
+
+    //requête SQL
+    $sql = "
+    INSERT INTO category(label)
+    VALUES (:label)
+    ";
+     // relie à la fonction déjà faite dans DAO qui update la DB
+     DAO::insert($sql, ["label"=>$label]);
+     }
+
     
 }
