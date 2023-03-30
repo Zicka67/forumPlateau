@@ -118,11 +118,11 @@ class SecurityController extends AbstractController implements ControllerInterfa
                                     $this->redirectTo("security", "login");
                                 }
                             } else {
-                                Session::addFlash('error', "Invalid credentialsss");
+                                Session::addFlash('error', "Password problem");
                                 $this->redirectTo("security", "login");
                             }
                         } else {
-                            Session::addFlash('error', "Invalid credentials");
+                            Session::addFlash('error', "incorrect password");
                             $this->redirectTo("security", "login");
                         }    
                     }
@@ -130,4 +130,31 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 }
                 
             }
+
+            // FONCTION QUI DECONNECTE
+        public function logout() {
+        
+            if (isset($_SESSION['user'])) {
+            // remplace la session de l'user par une session vide
+            $_SESSION['user'] = null;
+            //message qui affirme la déconnexion
+            Session::addFlash('success', 'Vous êtes bien déconnecté');
+            // retourne sur la page d'accueil
+            return ["view" => VIEW_DIR . "home.php"];
+            }
+            }
+
+            // FONCTION AFFICHAGE PROFIL 
+        public function profil() {
+
         }
+
+            // FONCTION AFFICHAGE LISTE UTILISATEUR (ADMIN)
+        public function listUsers() {
+            
+        }
+    }
+        
+        
+
+        
