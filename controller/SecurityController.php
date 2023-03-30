@@ -108,7 +108,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                                 // Ajoute un message de succès à la session en utilisant la méthode addFlash() de la classe Session
                                 Session::addFlash("success", "Login successfully");
                                 return [
-                                    "view" => VIEW_DIR . "login.php",
+                                    "view" => VIEW_DIR . "home.php",
                                     "data" => [
                                         "user" => $user,
                                         ]
