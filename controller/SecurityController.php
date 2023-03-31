@@ -183,7 +183,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                     // Bannit l'utilisateur en mettant à jour le champ "status" dans la base de données
                     $userManager->banUserById($id);
                     // var_dump($id); die;    id=12
-
+                    
                     // Affiche un message de succès
                     $message = "L'utilisateur ".$userPseudo." a été banni";
                     // Redirige vers la page de liste des utilisateurs
@@ -197,14 +197,34 @@ class SecurityController extends AbstractController implements ControllerInterfa
                     $this->redirectTo('security', 'listUsers', ['message' => $message]);
                 }
             }
-
-
+            
+            
             public function UnBanUser(){
-
-
-
-
-
+                if (!isset($_POST['id'])) {
+                    // Si aucun ID n'a été envoyé, redirection vers la page de liste des utilisateurs
+                    $this->redirectTo('security', 'listUsers');
+                }
+                
+                $id = $_POST['id'];
+                
+                if ($_SESSION['user']->getRole() == 'admin') {
+                    $userManager = new UserManager();
+                    
+                    $userPseudo = $userManager->findOneById($id)->getPseudo();
+                    
+                    $userManager->UnBanUserById($id);
+                    
+                    // Affiche un message de succès
+                    $message = "L'utilisateur ".$userPseudo." a été unBann";
+                    // Redirige vers la page de liste des utilisateurs
+                    Session::addFlash('success', $message);
+                    $this->redirectTo('security', 'listUsers');
+                } else {
+                    // Si l'utilisateur n'est pas un administrateur, affiche un message d'erreur
+                    $message = "Vous n'êtes pas autorisé à effectuer cette action";
+                    $this->redirectTo('security', 'listUsers', ['message' => $message]);
+                }
+        
             }
             
         }
