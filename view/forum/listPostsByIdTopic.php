@@ -16,7 +16,7 @@ if (!$posts) {
         <?php
 
         foreach ($posts as $post) {
-            var_dump($post->getUser());die;
+            // var_dump($post->getUser());die;
         ?>
       
             <table class="listTable">
@@ -36,7 +36,7 @@ if (!$posts) {
                 <tr class="bottomInfos">
                 
                    
-                    <th><?= $post->getUser()->getPseudo()?></th>
+                    <th><?= $post->getUser()?></th>
                     <th><?= $post->getDatePost() ?></th>
                 </tr>
             </table>
