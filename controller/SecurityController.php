@@ -69,12 +69,12 @@ class SecurityController extends AbstractController implements ControllerInterfa
         //Crée une nouvelle instance de la class UserManager, qui est responsable de la gestion des user
         $userManager = new UserManager();
         
-            // Si connect est non null if(isset($_POST['lgoin'])) { ne fonctionne pas ! if (!empty($_POST) && isset($_POST['login'])) { testé et ne fonctionne pas non plus 
+        // Si connect est non null if(isset($_POST['login'])) { ne fonctionne pas ! if (!empty($_POST) && isset($_POST['login'])) { testé et ne fonctionne pas non plus 
             // Vérifie s'il y a des données POST envoyées au script (soumission de formulaire)
             if(isset($_POST)) {
                 //Récupère le mail soumis à partir des données POST, en le filtrant
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-              
+                
                 //Récupère le password soumis à partir des données POST, en le filtrant
                 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 // Vérifie si le mail + password existent après les filtres
@@ -82,8 +82,6 @@ class SecurityController extends AbstractController implements ControllerInterfa
                     
                     // Récupère le password d'un user dans la base de données à l'aide de son email
                     $recupPassword = $userManager->findOneByEmail($email)->getPassword();
-          
-                    // var_dump($recupPassword);
                     
                     //Vérifie si un user avec le mail donnée existe 
                     if($recupPassword) {
@@ -96,7 +94,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                         $user = $userManager->findOneByEmail($email);
                         
                         //Vérifie si le mot de passe de l'user = a celui en DB, si oui on continue 
-                     
+                        
                         if (password_verify($password, $hashPassword)) {
                             
                             // vérifie si le user est autorisé à se connecter en utilisant la méthode getStatus() de la classe User
@@ -130,31 +128,87 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 }
                 
             }
-
+            
             // FONCTION QUI DECONNECTE
-        public function logout() {
-        
-            if (isset($_SESSION['user'])) {
-            // remplace la session de l'user par une session vide
-            $_SESSION['user'] = null;
-            //message qui affirme la déconnexion
-            Session::addFlash('success', 'Vous êtes bien déconnecté');
-            // retourne sur la page d'accueil
-            return ["view" => VIEW_DIR . "home.php"];
+            public function logout() {
+                
+                if (isset($_SESSION['user'])) {
+                    // remplace la session de l'user par une session vide
+                    $_SESSION['user'] = null;
+                    //message qui affirme la déconnexion
+                    Session::addFlash('success', 'Vous êtes bien déconnecté');
+                    // retourne sur la page d'accueil
+                    return ["view" => VIEW_DIR . "home.php"];
+                }
             }
-            }
-
+            
             // FONCTION AFFICHAGE PROFIL 
-        public function profil() {
-
-        }
-
+            public function profil() {
+                
+            }
+            
             // FONCTION AFFICHAGE LISTE UTILISATEUR (ADMIN)
-        public function listUsers() {
+            public function listUsers()
+            {
+                // Link au Manager
+                $userManager = new UserManager();
+                
+                // Récupération de tous les utilisateurs
+                $users = $userManager->findAll();
+                
+                // Retourne la vue et les données
+                return [
+                    "view" => VIEW_DIR . "security/listUsers.php",
+                    "data" => [
+                        "users" => $users,
+                    ],
+                ];
+            }
+            
+            public function banUser()
+            {
+                if (!isset($_POST['id'])) {
+                    // Si aucun ID n'a été envoyé, redirection vers la page de liste des utilisateurs
+                    $this->redirectTo('security', 'listUsers');
+                }
+                //On stock la valeur de id dans uen variable ( ici $id )
+                $id = $_POST['id'];
+                // Vérifie si l'utilisateur en session est un administrateur
+                // var_dump($id); die;     id=12
+                if ($_SESSION['user']->getRole() == 'admin') {
+                    $userManager = new UserManager();
+                    // Récupère le pseudo de l'utilisateur à bannir
+                    $userPseudo = $userManager->findOneById($id)->getPseudo();
+                    // var_dump($userPseudo); die;    pseudo = test
+                    // Bannit l'utilisateur en mettant à jour le champ "status" dans la base de données
+                    $userManager->banUserById($id);
+                    // var_dump($id); die;    id=12
+
+                    // Affiche un message de succès
+                    $message = "L'utilisateur ".$userPseudo." a été banni";
+                    // Redirige vers la page de liste des utilisateurs
+                    Session::addFlash('success', $message);
+                    
+                    // Redirige vers la page de liste des utilisateurs
+                    $this->redirectTo('security', 'listUsers');
+                } else {
+                    // Si l'utilisateur n'est pas un administrateur, affiche un message d'erreur
+                    $message = "Vous n'êtes pas autorisé à effectuer cette action";
+                    $this->redirectTo('security', 'listUsers', ['message' => $message]);
+                }
+            }
+
+
+            public function UnBanUser(){
+
+
+
+
+
+            }
             
         }
-    }
         
         
-
+        
         
