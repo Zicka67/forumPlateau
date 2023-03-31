@@ -99,7 +99,7 @@ class UserManager extends Manager{
 
     public function UnBanUserById($id) {
         $sql = "UPDATE ".$this->tableName." 
-        SET status = 0 
+        SET status = 1 
         WHERE id_user  = :id";
         DAO::update($sql, ['id' => $id]);
     }
