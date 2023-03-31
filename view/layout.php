@@ -24,6 +24,7 @@
                 <nav>
                     <div id="nav-left">
                         <a href="index.php">Accueil</a>
+                        <a href="index.php?ctrl=Forum&action=listCategories">Afficher les labels</a>
                         <?php
                         //Fait planter le cache pour le moment
                         if(App\Session::isAdmin()){
