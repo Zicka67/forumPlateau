@@ -89,5 +89,19 @@ class UserManager extends Manager{
         ";
         return(DAO::select($sql,['email' => $email]));
     }
+
+    public function banUserById($id) {
+        $sql = "UPDATE ".$this->tableName." 
+        SET status = 0 
+        WHERE id_user  = :id";
+        DAO::update($sql, ['id' => $id]);
+    }
+
+    public function UnBanUserById($id) {
+        $sql = "UPDATE ".$this->tableName." 
+        SET status = 0 
+        WHERE id_user  = :id";
+        DAO::update($sql, ['id' => $id]);
+    }
     
 }
