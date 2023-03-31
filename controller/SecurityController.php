@@ -224,8 +224,23 @@ class SecurityController extends AbstractController implements ControllerInterfa
                     $message = "Vous n'êtes pas autorisé à effectuer cette action";
                     $this->redirectTo('security', 'listUsers', ['message' => $message]);
                 }
-        
+                
             }
+            
+            public function showProfile()
+            {
+                // Vérifie si l'utilisateur est connecté
+                if (isset($_SESSION["user"])) {
+                    // Récupère l'utilisateur connecté
+                    $user = $_SESSION["user"];
+                    // Charge la vue profile.php en passant les informations de l'utilisateur
+                    require_once("view/security/profile.php");
+                } else {
+                    // Redirige vers la page de connexion si l'utilisateur n'est pas connecté
+                    $this->redirectTo('security', 'login');
+                }
+            }
+
             
         }
         
