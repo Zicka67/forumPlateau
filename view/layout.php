@@ -28,9 +28,9 @@
                         //Fait planter le cache pour le moment
                         if(App\Session::isAdmin()){
                          ?>
-                           <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
                            <a href="index.php?ctrl=Forum&action=addTopic">Edit un topic</a>
                            <a href="index.php?ctrl=Forum&action=addCategory">Edit une categorie</a>
+                           <a href="index.php?ctrl=Security&action=listUsers">Liste des utilisateurs</a>
                           <?php
                         }
                         ?>
@@ -40,7 +40,7 @@
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a href="view\security\viewProfile.php"><span class="fas fa-user"></span><?= App\Session::getUser()?></a>
+                            <a href="view\security\profile.php"><span class="fas fa-user"></span> <?= App\Session::getUser()?></a>
                             <a href="index.php?ctrl=Security&action=logout">Déconnexion</a>
                             <?php
                         }
