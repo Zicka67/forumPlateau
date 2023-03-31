@@ -36,12 +36,13 @@ class PostManager extends Manager{
     
     // Selectionner post by topic id
     public function getPostsByIdTopic($id) {
-        parent::connect();
+        parent::connect(); 
         $sql ="
-        SELECT * 
-        FROM ".$this->tableName." p
-        WHERE p.topic_id = :id
-        ORDER BY datePost ASC
+        SELECT *, user.pseudo as pseudo
+        FROM post
+        INNER JOIN user ON post.user_id = user.id_user
+        WHERE post.topic_id = :id
+        ORDER BY post.datePost ASC
         ";
         
         return $this->getMultipleResults(
