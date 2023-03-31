@@ -22,7 +22,6 @@ if (!$users) {
         <tbody>
     <?php foreach ($users as $user): ?>
         <tr>
-            <td><?= $user->getId() ?></td>
             <td><?= $user->getPseudo() ?></td>
             <td><?= $user->getEmail() ?></td>
             <td><?= $user->getStatus() ?></td>
