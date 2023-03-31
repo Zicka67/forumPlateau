@@ -18,6 +18,9 @@
                 Ajouter un topic : <br>
                 <input type="text" name="title" value="">
             </label>
+            <label for="">
+            <textarea name="message" placeholder="Ici ton message" rows="5"></textarea>
+            </label>
         </p><br>
         <input type="submit" name="modifier" value="Ajouter">
     </form>
