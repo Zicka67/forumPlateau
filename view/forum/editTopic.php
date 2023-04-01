@@ -1,30 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier le topic</title>
-</head>
-
-<body>
-
-    <h1>EDIT TOPIC</h1>
+<?php if(isset($result["data"]["category"])){
+    $category = $result["data"]["category"];
+}
+if(isset($_SESSION["user"])){
+    ?>
     
-    <form method="POST" action="index.php?ctrl=Forum&action=addTopic">
-        <p>
-            <label for="">
+    <h1 class="categoryList">EDIT TOPIC</h1>
+    
+    <?php if (App\Session::isAdmin()): ?>
+        <form method="POST" action="index.php?ctrl=Forum&action=addTopic">
+                <div class="containerMain">
+                <div class="topicContainerAdd">
+        <label for="">
                 Ajouter un topic : <br>
                 <input type="text" name="title" value="">
-            </label>
-            <label for="">
-            <textarea name="message" placeholder="Ici ton message" rows="5"></textarea>
-            </label>
-        </p><br>
-        <input type="submit" name="modifier" value="Ajouter">
-    </form>
-
-</body>
-
-</html>
+        </label>         
+        <label for="">
+                <textarea name="message" placeholder="Ici ton message" rows="8" cols="100"></textarea>
+        </label>
+        </div>
+                <input class="buton" type="submit" name="modifier" value="Ajouter">
+        </div>
+        </form>
+        <?php endif;?>
+        <?php
+    }
+    ?>
