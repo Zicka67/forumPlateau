@@ -171,8 +171,9 @@ class SecurityController extends AbstractController implements ControllerInterfa
                     // Si aucun ID n'a été envoyé, redirection vers la page de liste des utilisateurs
                     $this->redirectTo('security', 'listUsers');
                 }
-                //On stock la valeur de id dans uen variable ( ici $id )
+                //On stock la valeur de id dans uen variable ( ici $id = a l'utilisateur id=12 )
                 $id = $_POST['id'];
+                
                 // Vérifie si l'utilisateur en session est un administrateur
                 // var_dump($id); die;     id=12
                 if ($_SESSION['user']->getRole() == 'admin') {
