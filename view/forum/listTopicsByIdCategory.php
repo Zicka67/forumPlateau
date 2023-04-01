@@ -1,9 +1,13 @@
 <?php
 $topics = $result["data"]["topics"];
 $category = $result["data"]["category"];
+// var_dump($category); die;
 ?>
 
 <h1 class="categoryList">liste des topics <?=$category->getLabel()?></h1>
+            <div class="containerMain">
+                <a class="addTopicContainer" href="index.php?ctrl=Forum&action=addTopic&id=<?php echo $id; ?>">Ajouter un topic</a>
+            </div>
 <!-- On va chercher dans le construct getLabel avec la $category qui a accées aux data -->
 
 <?php
@@ -21,10 +25,5 @@ if(!$topics){
         </div>
         <?php
     }
-    
-    
-    
-    
-    
     
 } ?>
