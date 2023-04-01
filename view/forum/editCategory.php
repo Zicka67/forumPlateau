@@ -10,17 +10,19 @@
 
 <body>
 
-    <h1>EDIT CATEGORY</h1>
+    <h1 class="categoryList">EDIT CATEGORY</h1>
 
     <form method="POST" action="index.php?ctrl=Forum&action=addCategory">
-        <p>
+    <div class="containerMain2">
+        <p class="categoryContainerAdd">
             <label>
                 Ajouter une catégorie : <br>
                 <input type="text" name="label" value="">
 
             </label>
         </p><br>
-        <input type="submit" name="modifier" value="Ajouter">
+        <input class="buton2" type="submit" name="modifier" value="Ajouter">
+        </div>
     </form>
 
 </body>

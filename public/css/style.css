@@ -31,10 +31,15 @@ header nav {
     width: 100%;
     justify-content: space-between;
     display: flex;
+    font-size: 20px;
 }
 
 #nav-left{
     margin: 30px 0 50px 30px;
+}
+
+#nav-left a{
+    margin-right: 15px;
 }
 
 #nav-right{
@@ -58,12 +63,15 @@ header nav {
     display: flex;
     justify-content: center;
     margin-bottom: 50px;
-    margin-top: 30px;
+    margin-top: 120px;
+    font-size: 40px;
 }
 
 #forum p {
     margin: 0 auto;
-    width: 80%;
+    width: 30%;
+    font-size: 25px;
+    text-align: center;
 }
 
 .categoryList {
@@ -115,7 +123,6 @@ input {
 .containerMain {
     display: flex;
     flex-direction: column;
-
     width: 40%;
     margin: 0 auto;
 }
@@ -132,6 +139,19 @@ input {
     margin-left: 20px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.categoryContainerAdd {
+    background-color: rgb(200, 229, 246);
+    margin: 50px 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.categoryContainerAdd label {
+    margin-top: 80px;
 }
 
 /* ********************* Topic ************************ */
@@ -159,6 +179,7 @@ input {
 
 .topicContainerAdd textarea {
     margin-top: 20px;
+    resize: none;
 }
 
 .addTopicContainer {
@@ -203,6 +224,20 @@ span {
     font-family: 'Domine', serif;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.buton2  {
+    width: 120px;
+    height: 35px;
+    color: rgb(69, 69, 69);
+    border: none;
+    background-color: rgb(200, 229, 246);
+    font-weight: 600;
+    font-family: 'Domine', serif;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 665px;
+    margin-top: 10px;
 }
 
 /* ********************* POST ************************ */
@@ -253,11 +288,52 @@ tbody {
     float: right;
 }
 
+/* ******************** LISTUSER ********************* */
+
+
+
+.containerMainUser {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.flex {
+    background-color: rgb(200, 229, 246);
+    height: 200px;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.flex > th {
+    display: flex;
+    flex-direction: start;
+}
+
+.flex > td{
+    margin: 5px 0 5px 5px;
+}
+
+.ban {
+   margin-top: 210px;
+   margin-left: -65px;
+   background-color: rgb(200, 229, 246);
+   border-radius: 5px;
+   border: none;
+   width: 65px;
+   height: 40px;
+   font-size: 15px;
+   font-weight: bold;
+   cursor: pointer;
+}
 
 /* *********************FOOTER ********************** */
 
 footer {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 500px;
 }

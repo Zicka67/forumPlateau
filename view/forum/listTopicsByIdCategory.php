@@ -6,7 +6,7 @@ $category = $result["data"]["category"];
 
 <h1 class="categoryList">liste des topics <?=$category->getLabel()?></h1>
             <div class="containerMain">
-                <a class="addTopicContainer" href="index.php?ctrl=Forum&action=addTopic&id=<?php echo $id; ?>">Ajouter un topic</a>
+                <a class="addTopicContainer" href="index.php?ctrl=Forum&action=addTopic&id=<?= $category->getId()?>">Ajouter un topic</a>
             </div>
 <!-- On va chercher dans le construct getLabel avec la $category qui a accées aux data -->
 

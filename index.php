@@ -47,6 +47,10 @@
     //ex : HomeController->users(null)
     $result = $ctrl->$action($id);
     
+
+
+
+    
     /*--------CHARGEMENT PAGE--------*/
     
     if($action == "ajax"){//si l'action était ajax
