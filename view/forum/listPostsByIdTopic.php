@@ -12,13 +12,13 @@ $topic = $result["data"]['topic'];
 if (!$posts) {
     echo "vide pour le moment";
 } else { ?>
-    <div class="containerPosts">
+    <div class="containerMain">
         <?php
 
         foreach ($posts as $post) {
-            // var_dump($post->getUser());die;
+            // var_dump($post);die;
         ?>
-      
+            <div class="postContainer" >
             <table class="listTable">
                 <thead>
                     <tr>
@@ -33,13 +33,13 @@ if (!$posts) {
                      
                 ?>
                 </tbody>
-                <tr class="bottomInfos">
-                
-                   
-                    <th><?= $post->getUser()?></th>
-                    <th><?= $post->getDatePost() ?></th>
+                <tr class="bottomInfos">              
+                    <th class="small"><?= $post->getDatePost() ?></th>
+                    <th class="small">par</th>
+                    <th class="small"><?= $post->getUser()?></th>
                 </tr>
             </table>
+            </div>
        <?php } ?>
     </div>
 <?php

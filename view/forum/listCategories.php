@@ -12,7 +12,11 @@ if(!$categories){
     foreach($categories as $category ){
         
         ?>
-        <a class="categoryLink" href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"> <br> - <?=$category->getLabel()?></a>
+        <div class="containerMain">
+            <div class="categoryContainer">
+                <a class="categoryLink" href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"> <br>  <?=$category->getLabel()?></a>
+            </div>
+        </div>
         <?php
     }
 } 

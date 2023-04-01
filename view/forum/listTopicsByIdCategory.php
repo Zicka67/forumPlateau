@@ -14,7 +14,11 @@ if(!$topics){
     
     foreach($topics as $topic ){
         ?>
-        <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>"> <br>Title: -<?= $topic->getTitle()?><?= $topic->getUser() ?><br></a>
+        <div class="containerMain">
+            <div class="topicContainer">
+                <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?=$topic->getId()?>"><br><?= $topic->getTitle() ?> <span>crée le</span> <?= DateTime::createFromFormat('d/m/Y, H:i:s', $topic->getCreationDate())->format('d/m/Y') ?> <span>par</span>  <?=$topic->getUser() ?><br></a>
+            </div>
+        </div>
         <?php
     }
     
