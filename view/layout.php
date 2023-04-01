@@ -24,9 +24,9 @@
                 <nav>
                     <div id="nav-left">
                         <a href="index.php">Accueil</a>
-                        <a href="index.php?ctrl=Forum&action=listCategories">Afficher les labels</a>
+                        <a href="index.php?ctrl=Forum&action=listCategories">Categories</a>
                         <?php
-                        //Fait planter le cache pour le moment
+                       
                         if(App\Session::isAdmin()){
                          ?>
                            <a href="index.php?ctrl=Forum&action=addTopic">Edit un topic</a>
