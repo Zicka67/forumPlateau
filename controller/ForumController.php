@@ -27,156 +27,138 @@ class ForumController extends AbstractController implements ControllerInterface
             ];
         }
         
-        // Liste Categorie
-        public function listCategories()
+        // ************************** POST ****************************
+        
+        // Liste post par topic
+        public function listPostsByIdTopic($id)
         {
             
-            // Link au Manager
-            $categoryManager = new CategoryManager();
+            // variable qui relie au manager
+            $postManager = new PostManager();
+            $topicManager = new TopicManager();
             
-            
+            // renvoie 
             return [
-                "view" => VIEW_DIR . "forum/listCategories.php",
+                "view" => VIEW_DIR . "forum/listPostsByIdTopic.php",
                 "data" => [
-                    "categories" => $categoryManager->findAll(["label", "ASC"]),
+                    "posts" => $postManager->getPostsByIdTopic($id),
+                    "topic" => $topicManager->findOneById($id),
                     ]
                 ];
+                
             }
             
-            // Liste topics par categorie
-            public function listTopicsByIdCategory($id)
+            //************************** CATEGORIE *************************** 
+            
+            // Liste Categorie
+            public function listCategories()
             {
                 
                 // Link au Manager
                 $categoryManager = new CategoryManager();
-                $topicManager = new TopicManager();
-                
                 
                 
                 return [
-                    "view" => VIEW_DIR . "forum/listTopicsByIdCategory.php",
+                    "view" => VIEW_DIR . "forum/listCategories.php",
                     "data" => [
-                        "category" => $categoryManager->findOneById($id),
-                        "topics" => $topicManager->getTopicsByCategory($id),
+                        "categories" => $categoryManager->findAll(["label", "ASC"]),
                         ]
+                    ];
+                }             
+                
+                
+                // AJOUT D'UN LABEL
+                public function addCategory()
+                {
+                    $categoryManager = new CategoryManager();
+                    
+                    //VERIFIER SI LE FORM EXISTE QUAND ON APPEL LA FUNCTION
+                    if (isset($_POST['modifier'])) {
+                        $label = filter_input(INPUT_POST, "label", FILTER_SANITIZE_FULL_SPECIAL_CHARS);                  
+                        
+                        // si les valeurs existent
+                        if ($label) {
+                            
+                            $newLabel = ["label" => $label];
+                            $categoryManager->add($newLabel);
+                            // on redirige
+                            $this->redirectTo("forum", "listCategories");
+                        }
+                    }
+                    return [
+                        "view" => VIEW_DIR . "forum/editCategory.php",
+                        
                     ];
                 }
                 
+                // ************************ TOPIC ******************************
                 
-                // Liste post par topic
-                public function listPostsByIdTopic($id)
+                // Liste topics par categorie
+                public function listTopicsByIdCategory($id)
                 {
                     
-                    // variable qui relie au manager
-                    $postManager = new PostManager();
+                    // Link au Manager
+                    $categoryManager = new CategoryManager();
                     $topicManager = new TopicManager();
                     
-                    // renvoie 
                     return [
-                        "view" => VIEW_DIR . "forum/listPostsByIdTopic.php",
+                        "view" => VIEW_DIR . "forum/listTopicsByIdCategory.php",
                         "data" => [
-                            "posts" => $postManager->getPostsByIdTopic($id),
-                            "topic" => $topicManager->findOneById($id)
+                            "category" => $categoryManager->findOneById($id),
+                            "topics" => $topicManager->getTopicsByCategory($id),
                             ]
                         ];
                     }
                     
-                    // AJOUT D'UN LABEL
-                    public function addCategory()
+                    //Redirection vers addTopic
+                    public function redirectToAddTopic($id)
                     {
-                        //VERIFIER SI LE FORM EXISTE QUAND ON APPEL LA FUNCTION
-                        if (isset($_POST['modifier'])) {
-                            $label = filter_input(INPUT_POST, "label", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                            
-                            
+                        if (isset($_SESSION['user'])) {
                             $categoryManager = new CategoryManager();
-                            
-                            // si les valeurs existent
-                            if ($label) {
-                                
-                                $newLabel = ["label" => $label];
-                                $categoryManager->add($newLabel);
-                                // on redirige
-                                $this->redirectTo("forum", "listCategories");
+                            return [
+                                "view"=> VIEW_DIR . "forum/addTopic.php",
+                                "data" => [
+                                    "category" => $categoryManager->findOneById($id)
+                                    ]
+                                ];
                             }
                         }
-                        return [
-                            "view" => VIEW_DIR . "forum/editCategory.php",
-                            
-                        ];
-                    }
-                    
-                    public function addTopic()
-                    {
-                        //VERIFIER SI LE FORM EXISTE QUAND ON APPEL LA FUNCTION
-                        if (isset($_POST['modifier'])) {
-                            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                            $text = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                            // $category = filter_input(INPUT_POST, "category",  FILTER_VALIDATE_INT);
-                            
-                            $topicManager = new TopicManager();
-                            // $postManager = new PostManager();
-                           
-                            // si les valeurs existent
-                            if ($title && $text) {
-                                
-                                $newTitle = ["title" => $title];
-                                $newText = ["message" => $text];
-                                // OK jusqu'ici
-                                $topicManager->add($newTitle);
-                                var_dump($topicManager->add($newTitle)); die;
-                                $topicManager->add($newText);
-                                // Redirige après que la function s'est bien executée
-                                $this->redirectTo("forum", "listTopics");
-                            }
-                        }
-                        return [//Redirige au clic sur Edit un topic
-                            "view" => VIEW_DIR . "forum/editTopic.php",
-                            
-                        ];
-                    }
-
-
-
-                    // AJOUT D'UN TOPIC
-                    // public function addTopicTEST($id)
-                    // {
                         
-                    //     if (isset($_POST['modifier'])) {
-                    //         // filtres pour la sécurité du formulaire
-                    //         $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    //         // $category = filter_input(INPUT_POST, "category",  FILTER_VALIDATE_INT);
-                    //         $text = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                        //$id est = a l'id de la catégorie ici pour lui ajouter a lui un topic
+                        public function addTopic($id)
+                        {
+                            // var_dump($id); die;
+                            $topicManager = new TopicManager();
+                            $postManager = new PostManager();
                             
-                    //         // renvoi à un user ?                         
-                    //         // $userId = 1;
-                            
-                    //         //variable qui relie au manager TOPIC
-                    //         $topicManager = new TopicManager();
-                    //         $postManager = new PostManager();
-                    //         // $userManager = new UserManager();
-                          
-                    //         if (!empty($_SESSION['user'])) {
-                    //             echo "qfdqzdd"; die;
-                    //             $user = $_SESSION['user']->getId();
-
-                    //             // si les valeurs existent
-                    //             if ($title && $text) {
-                    //                 // $data déclarée pour être utilisée dans la fonction add($data) dans manager
-                    //                 // $newTopic = $topicManager->add(["user_id" => $user, "title" => $title, "category_id" => $category]);
-                    //                 $newTopic = ["title" => $title, "category_id" => $id, "user_id" => $user];
-                    //                 // prend une fonction auto-intégré "lastinsertid"
-                    //                 $topicId = $topicManager->add($newTopic);
+                            //Si la session du user existe
+                            if (isset($_SESSION["user"])) {
+                                
+                                //VERIFIER SI LE FORM EXISTE QUAND ON APPEL LA FUNCTION
+                                if (isset($_POST['modifier'])) {
+                                    $topicTitle = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                                    $newMessage = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                                    $user = $_SESSION["user"]->getId();
+                                    $close = 1;
                                     
-                    //                 // $newPost = $postManager->add(["user_id" => $user, "topic_id" => $newTopic, "text" => $text]);
-                    //                 $newPost = ["text" => $text, "topic_id" => $topicId, "user_id" => $user];
-                    //                 $postManager->add($newPost);
+                                    // si les valeurs existent
+                                    if ($topicTitle && $newMessage && $user) {
+                                        
+                                        //On rempalce en BDD
+                                        $newTitle = ["title" => $topicTitle, "category_id" => $id, "user_id" => $user, "closed" => $close];
+                                        $newMessage = ["message" => $newMessage, "user_id" => $user, "topic_id" => $newTitle];
+                                        // var_dump($id); die;
+                                        // Redirige après que la function s'est bien executée
+                                        $this->redirectTo("forum", "listTopics", $newTitle);
+                                    }
+                                }
+                                return [//Redirige au clic sur Edit un topic
+                                    "view" => VIEW_DIR . "forum/editTopic.php",
                                     
-                    //                 $this->redirectTo("forum", "listTopicsByIdCategory", $id);
-                    //             }
-                    //         }
-                    //     }
-                    // }
-
-
-                }
+                                ];
+                            }
+                        }
+                        
+                        
+                        
+                    }
