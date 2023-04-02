@@ -15,8 +15,8 @@
                     $manName = ucfirst($fieldArray[0])."Manager";
                     $FQCName = "Model\Managers".DS.$manName;
                     
-                    // $man = new $FQCName();   A commenter actuellement pour voir la liste des topics
-                    // $value = $man->findOneById($value); A commenter actuellement pour voir la liste des topics
+                    $man = new $FQCName();   
+                    $value = $man->findOneById($value); 
                 }
                 //fabrication du nom du setter à appeler (ex: setMarque)
                 $method = "set".ucfirst($fieldArray[0]);
