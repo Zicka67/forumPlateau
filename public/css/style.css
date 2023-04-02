@@ -74,6 +74,25 @@ header nav {
     text-align: center;
 }
 
+#forum2 p {
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+    background-color: rgb(200, 229, 246);
+    border-radius: 5px;
+    margin-top: 50px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(45, 75, 248);
+}
+
+.forum2container {
+    width: 30%;
+    margin: 0 auto;
+}
+
 .categoryList {
     display: flex;
     justify-content: center;
@@ -240,6 +259,22 @@ span {
     margin-top: 10px;
 }
 
+.centerTopics {
+    background-color: rgb(200, 229, 246);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 40px;
+    margin: 50px auto;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(45, 75, 248);
+}
+
+
 /* ********************* POST ************************ */
 
 
@@ -286,6 +321,10 @@ tbody {
 .bottomInfos {
     display: block;
     float: right;
+}
+
+.formPostRepondre {
+    margin-top: 10px;
 }
 
 /* ******************** LISTUSER ********************* */
