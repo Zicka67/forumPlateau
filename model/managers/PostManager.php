@@ -38,7 +38,7 @@ class PostManager extends Manager{
     public function getPostsByIdTopic($id) {
         parent::connect(); 
         $sql ="
-        SELECT *, user.pseudo as pseudo
+        SELECT *
         FROM post
         INNER JOIN user ON post.user_id = user.id_user
         WHERE post.topic_id = :id
