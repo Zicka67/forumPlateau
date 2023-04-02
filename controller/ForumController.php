@@ -96,7 +96,7 @@ class ForumController extends AbstractController implements ControllerInterface
                 // Liste topics par categorie
                 public function listTopicsByIdCategory($id)
                 {
-                    // var_dump($_GET['id']); die;
+
                     // On stock la classe category et topic dans une variable associer
                     $categoryManager = new CategoryManager();
                     $topicManager = new TopicManager();
@@ -131,10 +131,14 @@ class ForumController extends AbstractController implements ControllerInterface
                         //$id est = a l'id de la catégorie ici pour lui ajouter a lui un topic
                         public function addTopic($id)
                         {
-                            
+                            // var_dump($id); die;
                            // On créer une classe topic et post grace aux managers et de la function construct, pour accéder aux données
                             $topicManager = new TopicManager();
-                            $postManager = new PostManager();                      
+                            $postManager = new PostManager(); 
+                            $categoryManager = new CategoryManager();  
+                            
+                            $category = $categoryManager->findOneById($id);
+
                             //Si la session du user existe
                             if (isset($_SESSION["user"])) {
                                 
@@ -144,19 +148,19 @@ class ForumController extends AbstractController implements ControllerInterface
                                     $topicTitle = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                                     $newMessage = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                                     $user = $_SESSION["user"]->getId();
-                                    // var_dump($id); die;
+
                                     // si les valeurs existent
                                     if ($topicTitle && $newMessage && $user) {
-                                        $idOfLastTopic = $topicManager->add(["title" => $topicTitle, "category_id" => $id, "user_id" => $user]);
-                                        $postManager->add(["message" => $newMessage, "user_id" => $user, "topic_id" => $idOfLastTopic]);
+                                    $idTopic = $topicManager->add(["title" => $topicTitle, "category_id" => $category->getId(), "user_id" => $user]);                                 
+                                    $postManager->add(["text" => $newMessage, "user_id" => $user, "topic_id" => $idTopic]);
                                         
-                                        $this->redirectTo("forum", "listTopicsByIdCategory", $id);
-                                    }
+                                    $this->redirectTo("forum", "listTopicsByIdCategory", $category->getId());
+                                   }
                                 }
                                 return [
                                     "view" => VIEW_DIR . "forum/editTopic.php",
                                     "data" => [
-                                        "category" => (new CategoryManager())->findOneById($id),
+                                        "category" => $categoryManager->findOneById($id),
                                     ],
                                 ];
                             }
