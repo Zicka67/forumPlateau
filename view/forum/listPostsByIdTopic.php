@@ -9,14 +9,14 @@ $topic = $result["data"]['topic'];
 <h1 class="categoryList">La liste des messages dans le <?= $topic->getTitle() ?></h1>
 
 <?php
-if (!$posts) {
-    echo "vide pour le moment";
-} else { ?>
+if (!$posts) { ?>
+    <div class="centerTopics">Vide pour le moment</div>
+<?php } else { ?>
     <div class="containerMain">
         <?php
 
         foreach ($posts as $post) {
-            // var_dump($post);die;
+            
         ?>
             <div class="postContainer" >
             <table class="listTable">
@@ -39,6 +39,14 @@ if (!$posts) {
                     <th class="small"><?= $post->getUser()?></th>
                 </tr>
             </table>
+                <div class="formPostRepondre">
+                    <form action="">
+                        <label for="">Envie de répondre ?
+                    <textarea name="" id="" cols="106" rows="5"></textarea>
+                    <input type="button" value="Envoyer">
+                        </label>
+                    </form>
+                </div>
             </div>
        <?php } ?>
     </div>
