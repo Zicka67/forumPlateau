@@ -39,16 +39,17 @@ if (!$posts) { ?>
                     <th class="small"><?= $post->getUser()?></th>
                 </tr>
             </table>
-                <div class="formPostRepondre">
+              
+            </div>
+       <?php } ?>
+       <div class="formPostRepondre">
                     <form action="">
-                        <label for="">Envie de répondre ?
-                    <textarea name="" id="" cols="106" rows="5"></textarea>
+                        <label class="postRepondre" for="">Envie de répondre ?
+                    <textarea name="" id="" cols="105" rows="6"></textarea>
                     <input type="button" value="Envoyer">
                         </label>
                     </form>
                 </div>
-            </div>
-       <?php } ?>
     </div>
 <?php
 

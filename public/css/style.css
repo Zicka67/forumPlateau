@@ -277,6 +277,14 @@ span {
 
 /* ********************* POST ************************ */
 
+.containerMain .postContainer:nth-child(even) {
+    margin-left: 40px;
+  
+}
+.containerMain .postContainer:nth-child(odd) {
+    margin-right: 40px;
+   
+}
 
 .listTable {
     background-color: rgb(200, 229, 246);
@@ -285,6 +293,14 @@ span {
     justify-content: center;
     margin-top: 20px;
     border-radius: 5px;
+}
+
+.postContainer:nth-child(even) .listTable {
+    background-color: rgb(100, 192, 245);
+}
+
+.postContainer:nth-child(odd) .listTable {
+    background-color: rgb(200, 229, 246);
 }
 
 
@@ -325,6 +341,10 @@ tbody {
 
 .formPostRepondre {
     margin-top: 10px;
+}
+
+.postRepondre textarea{
+    resize: none;
 }
 
 /* ******************** LISTUSER ********************* */
