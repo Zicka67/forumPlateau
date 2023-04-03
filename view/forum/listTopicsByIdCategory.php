@@ -4,11 +4,10 @@ $category = $result["data"]["category"];
 ?>
 
 <h1 class="categoryList">liste des topics <?=$category->getLabel()?></h1>
-<?php  if(App\Session::isAdmin()) { ?>
+
     <div class="containerMain">
     <a class="addTopicContainer" href="index.php?ctrl=Forum&action=addTopic&id=<?= $category->getId()?>">Ajouter un topic</a>
     </div>
-    <?php  }?>
     <!-- On va chercher dans le construct getLabel avec la $category qui a accées aux data -->
     <div>
     <?php if(!$topics){ ?>

@@ -30,7 +30,6 @@
                         if(App\Session::isAdmin()){
                          ?>
                            <!-- <a href="index.php?ctrl=Forum&action=addTopic">Edit un topic</a> -->
-                           <a href="index.php?ctrl=Forum&action=addCategory">Edit une categorie</a>
                            <a href="index.php?ctrl=Security&action=listUsers">Liste des utilisateurs</a>
                           <?php
                         }
