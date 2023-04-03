@@ -48,6 +48,30 @@ class ForumController extends AbstractController implements ControllerInterface
                 
             }
             
+            public function addPost()
+            {
+                if (isset($_SESSION["user"]) && isset($_POST['envoyer'])) {
+                    $postManager = new PostManager();
+                    $userManager = new UserManager();
+             
+                    $newPost = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $user_id = $_SESSION["user"]->getId();               
+                    $topic_id = filter_input(INPUT_POST, "topic_id", FILTER_SANITIZE_NUMBER_INT); 
+
+                                      
+                    if ($newPost && $user_id && $topic_id) {
+                        $postManager->add([
+                            "text" => $newPost,
+                            "user_id" => $user_id,
+                            "topic_id" => $topic_id,
+                        ]);
+                        // var_dump($topic_id); die; 
+                        // redirection vers la même page
+                        $this->redirectTo("forum", "listPostsByIdTopic", $topic_id);
+                    }
+                }
+            }
+            
             //************************** CATEGORIE *************************** 
             
             // Liste Categorie
@@ -96,7 +120,7 @@ class ForumController extends AbstractController implements ControllerInterface
                 // Liste topics par categorie
                 public function listTopicsByIdCategory($id)
                 {
-
+                    
                     // On stock la classe category et topic dans une variable associer
                     $categoryManager = new CategoryManager();
                     $topicManager = new TopicManager();
@@ -132,13 +156,13 @@ class ForumController extends AbstractController implements ControllerInterface
                         public function addTopic($id)
                         {
                             // var_dump($id); die;
-                           // On créer une classe topic et post grace aux managers et de la function construct, pour accéder aux données
+                            // On créer une classe topic et post grace aux managers et de la function construct, pour accéder aux données
                             $topicManager = new TopicManager();
                             $postManager = new PostManager(); 
                             $categoryManager = new CategoryManager();  
                             
                             $category = $categoryManager->findOneById($id);
-
+                            
                             //Si la session du user existe
                             if (isset($_SESSION["user"])) {
                                 
@@ -148,14 +172,14 @@ class ForumController extends AbstractController implements ControllerInterface
                                     $topicTitle = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                                     $newMessage = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                                     $user = $_SESSION["user"]->getId();
-
+                                    
                                     // si les valeurs existent
                                     if ($topicTitle && $newMessage && $user) {
-                                    $idTopic = $topicManager->add(["title" => $topicTitle, "category_id" => $category->getId(), "user_id" => $user]);                                 
-                                    $postManager->add(["text" => $newMessage, "user_id" => $user, "topic_id" => $idTopic]);
+                                        $idTopic = $topicManager->add(["title" => $topicTitle, "category_id" => $category->getId(), "user_id" => $user]);                                 
+                                        $postManager->add(["text" => $newMessage, "user_id" => $user, "topic_id" => $idTopic]);
                                         
-                                    $this->redirectTo("forum", "listTopicsByIdCategory", $category->getId());
-                                   }
+                                        $this->redirectTo("forum", "listTopicsByIdCategory", $category->getId());
+                                    }
                                 }
                                 return [
                                     "view" => VIEW_DIR . "forum/editTopic.php",
