@@ -46,7 +46,7 @@ class TopicManager extends Manager{
             $this->className
         );
     }
-    
+
     public function deleteTopic($id)
     {
         $this->delete($id);

@@ -10,7 +10,7 @@
 
 <body>
 
-    <h1 class="categoryList">EDIT CATEGORY</h1>
+    <h1 class="categoryList">AJOUTER UNE CATEGORIE</h1>
 
     <form method="POST" action="index.php?ctrl=Forum&action=addCategory">
     <div class="containerMain2">
