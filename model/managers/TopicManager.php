@@ -52,11 +52,6 @@ class TopicManager extends Manager{
         $this->delete($id);
     }
     
-    public function getId(){
-        
-        
-    }
-    
     public function lockTopicById($id)
     {
         parent::connect();
