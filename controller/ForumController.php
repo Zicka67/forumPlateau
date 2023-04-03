@@ -53,12 +53,12 @@ class ForumController extends AbstractController implements ControllerInterface
                 if (isset($_SESSION["user"]) && isset($_POST['envoyer'])) {
                     $postManager = new PostManager();
                     $userManager = new UserManager();
-             
+                    
                     $newPost = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $user_id = $_SESSION["user"]->getId();               
                     $topic_id = filter_input(INPUT_POST, "topic_id", FILTER_SANITIZE_NUMBER_INT); 
-
-                                      
+                    
+                    
                     if ($newPost && $user_id && $topic_id) {
                         $postManager->add([
                             "text" => $newPost,
@@ -71,6 +71,39 @@ class ForumController extends AbstractController implements ControllerInterface
                     }
                 }
             }
+            
+            public function deletePost($id){
+                $PostManager = new PostManager();
+                $post = $PostManager->findOneById($id);
+                $user= Session::getUser();
+                
+                if(isset($_SESSION['user'])){
+                    $PostManager->delete($id);
+                    //Poru redirectTo 1er argument= le controller, 2eme=la méthode,3eme=l'id (le 3eme est facultatif)  //     
+                    $this->redirectTo("forum", "postSelected", $post->getTopic()->getId());
+                }
+            }
+
+            // public function deletePost()
+            //     {
+                    
+            //         // Vérifie que l'utilisateur est connecté et qu'il est admin
+            //         $user = Session::getUser();
+            //         if (!$user || !$user->hasRole('admin')) {
+            //             // Redirige vers une page d'erreur ou de connexion
+            //             $this->redirectTo("forum", "listCategories");
+            //         }
+                    
+            //         // Récupére l'ID de la catégorie à supprimer depuis les paramètres GET
+            //         $categoryId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+            //         // var_dump($categoryId); die ;
+            //         // Créer un objet de CategoryManager et appele la fonction deleteCategory
+            //         $categoryManager = new CategoryManager();
+            //         $categoryManager->deleteCategory($categoryId);
+                    
+            //         // Redirige vers la liste des catégory
+            //         $this->redirectTo("forum", "listCategories");
+            //     }
             
             //************************** CATEGORIE *************************** 
             
@@ -113,6 +146,27 @@ class ForumController extends AbstractController implements ControllerInterface
                         "view" => VIEW_DIR . "forum/editCategory.php",
                         
                     ];
+                }
+                
+                public function deleteCategory()
+                {
+                    
+                    // Vérifie que l'utilisateur est connecté et qu'il est admin
+                    $user = Session::getUser();
+                    if (!$user || !$user->hasRole('admin')) {
+                        // Redirige vers une page d'erreur ou de connexion
+                        $this->redirectTo("forum", "listCategories");
+                    }
+                    
+                    // Récupére l'ID de la catégorie à supprimer depuis les paramètres GET
+                    $categoryId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+                    // var_dump($categoryId); die ;
+                    // Créer un objet de CategoryManager et appele la fonction deleteCategory
+                    $categoryManager = new CategoryManager();
+                    $categoryManager->deleteCategory($categoryId);
+                    
+                    // Redirige vers la liste des catégory
+                    $this->redirectTo("forum", "listCategories");
                 }
                 
                 // ************************ TOPIC ******************************
@@ -188,6 +242,27 @@ class ForumController extends AbstractController implements ControllerInterface
                                     ],
                                 ];
                             }
+                        }
+                        
+                        public function deleteTopic()
+                        {
+                            
+                            // Vérifie que l'utilisateur est connecté et qu'il est admin
+                            $user = Session::getUser();
+                            if (!$user || !$user->hasRole('admin')) {
+                                // Redirige vers une page d'erreur ou de connexion
+                                $this->redirectTo("forum", "listCategories");
+                            }
+                            
+                            // Récupére l'ID de la catégorie à supprimer depuis les paramètres GET
+                            $categoryId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+                            // var_dump($categoryId); die ;
+                            // Créer un objet de CategoryManager et appele la fonction deleteCategory
+                            $categoryManager = new CategoryManager();
+                            $categoryManager->deleteCategory($categoryId);
+                            
+                            // Redirige vers la liste des catégory
+                            $this->redirectTo("forum", "listCategories");
                         }
                         
                         

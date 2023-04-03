@@ -4,20 +4,27 @@ $categories = $result["data"]["categories"];
 
 <h1 class="categoryList">liste des categories</h1>
 
+
+
 <?php
 if(!$categories){
     echo "vide pour le moment";
 } else {    
     
-    foreach($categories as $category ){
-        
+    foreach($categories as $category) {
         ?>
         <div class="containerMain">
+            <?php if (isset($category)) { ?>
             <div class="categoryContainer">
-                <a class="categoryLink" href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"> <br>  <?=$category->getLabel()?></a>
+                <a class="categoryLink" href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"> <br> <?=$category->getLabel()?></a> 
+                <?php if(App\Session::isAdmin()){ ?>
+                    <a href="index.php?ctrl=forum&action=deleteCategory&id=<?=$category->getId()?>">supprimer</a>
+                <?php } ?>
             </div>
+            <?php } ?>
         </div>
         <?php
     }
-} 
-
+    } 
+    ?>
+  
