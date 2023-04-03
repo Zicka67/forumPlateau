@@ -1,10 +1,7 @@
 <?php
 $posts = $result["data"]['posts'];
 $topic = $result["data"]['topic'];
-
 ?>
-
-
 
 <h1 class="categoryList">La liste des messages dans le <?= $topic->getTitle() ?></h1>
 
@@ -43,13 +40,15 @@ if (!$posts) { ?>
             </div>
        <?php } ?>
        <div class="formPostRepondre">
-                    <form action="">
+                    <form method="POST" action="index.php?ctrl=forum&action=addPost">
                         <label class="postRepondre" for="">Envie de répondre ?
-                    <textarea name="" id="" cols="105" rows="6"></textarea>
-                    <input type="button" value="Envoyer">
+                    <textarea name="message" cols="105" rows="6"></textarea>
+                    <!-- hidden input pour stocker l'id de ce topic et l'envoyer dans addPost, surement mieux a faire -->
+                    <input type="hidden" name="topic_id" value="<?= $topic->getId() ?>"> 
+                    <input class="buton" type="submit" name="envoyer" value="Envoyer">
                         </label>
                     </form>
-                </div>
+        </div>
     </div>
 <?php
 
