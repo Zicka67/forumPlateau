@@ -1,7 +1,7 @@
 <?php
 $posts = $result["data"]['posts'];
 $topic = $posts->current()->getTopic();
-$countPosts = 1;
+$countPosts = 0;
 // var_dump($posts->current()->getTopic()->getCountPosts());die;
 
 ?>
@@ -11,18 +11,21 @@ $countPosts = 1;
 
 
 <?php
+
 if (!$posts) { ?>
+
     <div class="centerTopics">Vide pour le moment</div>
 <?php } else { ?>
     <div class="containerMain">
+             
         <?php
         foreach ($posts as $post) {
-            // $countPosts = 1;
             $countPosts++;
-        //    echo $countPosts++;
-            // echo $post->getId()
-        ?>
+
+        ?>  
+
             <div class="postContainer" >
+
             <table class="listTable">
                 <thead>
                     <tr>
@@ -34,22 +37,22 @@ if (!$posts) { ?>
                     <tr>
                         <td><?= $post->getText() ?></td>
                     </tr>
-                <?php
-                     
-                ?>
+
                 </tbody>
+
                 <tr class="bottomInfos">              
                     <th class="small"><?= $post->getDatePost() ?></th>
                     <th class="small">par</th>
                     <th class="small"><?= $post->getUser()?></th>
                 </tr>
+
             </table>
-                <!-- <?php   A INTEGRER
-        }
-        echo "<p>Nombre de messages : " . $countPosts . "</p>"; 
-        ?>  -->
             </div>
-       <?php } ?>
+            <?php
+            } ?>
+            <?php   
+                echo "<p class='test'> Nombre de messages : " . $countPosts . "</p>"; 
+             ?>
        <div class="formPostRepondre">
                     <form method="POST" action="index.php?ctrl=forum&action=addPost">
                         <label class="postRepondre" for="">Envie de répondre ?
@@ -61,6 +64,6 @@ if (!$posts) { ?>
                     </form>
         </div>
     </div>
-<?php
 
+<?php
 } ?>
