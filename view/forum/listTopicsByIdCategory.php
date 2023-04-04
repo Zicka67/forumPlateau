@@ -29,6 +29,7 @@ $category = $result["data"]["category"];
                         <?= $topic->getUser()->getPseudo() ?>
                         <!-- afficher le nombre de messages correspondant à chaque topic -->
                         <span>(
+                        
                             <?= $topic->getCountPosts() ?> messages)
                         </span>
                         <br>

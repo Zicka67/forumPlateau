@@ -134,6 +134,12 @@ final class Topic extends Entity{
                 return $this->countPosts;
         }
 
+//         public function getCountPosts()     A TESTER
+// {
+//     $postManager = new PostManager();
+//     return $postManager->getCountPostsByTopic($this->id);
+// }
+
         /**
          * Set the value of countPosts
          *
