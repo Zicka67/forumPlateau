@@ -1,8 +1,8 @@
 <?php
 $posts = $result["data"]['posts'];
 $topic = $posts->current()->getTopic();
-$countPosts = 0;
-var_dump($posts->current()->getTopic()->getCountPosts());die;
+$countPosts = 1;
+// var_dump($posts->current()->getTopic()->getCountPosts());die;
 
 ?>
 
@@ -16,10 +16,11 @@ if (!$posts) { ?>
 <?php } else { ?>
     <div class="containerMain">
         <?php
-
         foreach ($posts as $post) {
+            // $countPosts = 1;
             $countPosts++;
-            echo $post->getId()
+        //    echo $countPosts++;
+            // echo $post->getId()
         ?>
             <div class="postContainer" >
             <table class="listTable">
@@ -43,7 +44,10 @@ if (!$posts) { ?>
                     <th class="small"><?= $post->getUser()?></th>
                 </tr>
             </table>
-              
+                <!-- <?php   A INTEGRER
+        }
+        echo "<p>Nombre de messages : " . $countPosts . "</p>"; 
+        ?>  -->
             </div>
        <?php } ?>
        <div class="formPostRepondre">
