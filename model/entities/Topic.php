@@ -11,6 +11,7 @@ final class Topic extends Entity{
         private $category;
         private $user;
         private $closed;
+        private $countPosts;
         
         public function __construct($data){     
                 //hydrate pour remplir les propriétés de l'objet Topic avec les données en DB    
@@ -122,6 +123,26 @@ final class Topic extends Entity{
         {
                 $this->category = $category;
                 
+                return $this;
+        }
+
+        /**
+         * Get the value of countPosts
+         */ 
+        public function getCountPosts()
+        {
+                return $this->countPosts;
+        }
+
+        /**
+         * Set the value of countPosts
+         *
+         * @return  self
+         */ 
+        public function setCountPosts($countPosts)
+        {
+                $this->countPosts = $countPosts;
+
                 return $this;
         }
 }

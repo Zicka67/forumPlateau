@@ -6,7 +6,7 @@ use App\Entity;
 //final pour les classes empêche l'héritage
 final class Post extends Entity{
         
-        private $id;
+        private int $id;
         private $text;
         private $datePost;
         private $user;

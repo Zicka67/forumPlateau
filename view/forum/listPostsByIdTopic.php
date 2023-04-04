@@ -1,9 +1,14 @@
 <?php
 $posts = $result["data"]['posts'];
-$topic = $result["data"]['topic'];
+$topic = $posts->current()->getTopic();
+$countPosts = 0;
+var_dump($posts->current()->getTopic()->getCountPosts());die;
+
 ?>
 
+
 <h1 class="categoryList">La liste des messages dans le <?= $topic->getTitle() ?></h1>
+
 
 <?php
 if (!$posts) { ?>
@@ -13,13 +18,15 @@ if (!$posts) { ?>
         <?php
 
         foreach ($posts as $post) {
-            
+            $countPosts++;
+            echo $post->getId()
         ?>
             <div class="postContainer" >
             <table class="listTable">
                 <thead>
                     <tr>
-                        <th>Message :   <a class="supprimerPost" href="index.php?ctrl=forum&action=deletePost&id=">Supprimer</a></th>                   
+                        <th>Message :  <a class="supprimerPost" href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer</a></th>
+                                    
                     </tr>
                 </thead>
                 <tbody>

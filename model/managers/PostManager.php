@@ -34,26 +34,9 @@ class PostManager extends Manager{
         );
     }
     
-    // Selectionner post by topic id
-    public function getPostsByIdTopic($id) {
-        parent::connect(); 
-        $sql ="
-        SELECT *
-        FROM post
-        INNER JOIN user ON post.user_id = user.id_user
-        WHERE post.topic_id = :id
-        ORDER BY post.datePost ASC
-        ";
-        
-        return $this->getMultipleResults(
-            DAO::select($sql, ['id' => $id]), 
-            $this->className
-        );
-    }
+ 
     
+  
 
-    
-    
-    
-    
+
 }
