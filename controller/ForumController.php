@@ -35,18 +35,17 @@ class ForumController extends AbstractController implements ControllerInterface
 
         // variable qui relie au manager
         $postManager = new PostManager();
-            
-            // renvoie 
-            return [
-                "view" => VIEW_DIR . "forum/listPostsByIdTopic.php",
-                "data" => [
+        // renvoie 
+        
+        return [
+            "view" => VIEW_DIR . "forum/listPostsByIdTopic.php",
+            "data" => [
                 "posts" => $postManager->getPostsByTopic($id),
-            
+
             ]
         ];
 
     }
-
     public function addPost()
     {
         if (isset($_SESSION["user"]) && isset($_POST['envoyer'])) {
@@ -71,25 +70,6 @@ class ForumController extends AbstractController implements ControllerInterface
         }
     }
 
-    // public function deletePost($id)
-    // {
-    //     $user = Session::getUser();
-
-    //     if (!$user || !$user->hasRole('admin')) {
-    //         //         // Redirige vers une page d'erreur ou de connexion
-    //         //         $this->redirectTo("forum", "listTopicsByIdCategory");
-    //           }
-
-    //     $PostManager = new PostManager();
-    //     $post = $PostManager->findOneById($id);
-
-    //     if (isset($_SESSION['admin'])) {
-    //         $PostManager->delete($id);
-    //         //Poru redirectTo 1er argument= le controller, 2eme=la méthode,3eme=l'id (le 3eme est facultatif)  //     
-    //         $this->redirectTo("forum", "listPostsByIdTopic", $post->getTopic()->getId());
-    //     }
-    // }
-
     public function deletePost()
     {
 
@@ -106,10 +86,18 @@ class ForumController extends AbstractController implements ControllerInterface
 
         // Créer un objet de postManager et appele la fonction postTopic
         $postManager = new PostManager();
-        $topic = $postManager->findOneById($postId)->getTopic()->getId();
+        $topic = $postManager->findOneById($postId)->getTopic();
         $postManager->delete($postId);
 
 
+
+        // if ($topic->getCountPosts() > 0) {
+        //     // Redirige vers la liste des posts associés à ce topic
+        //     $this->redirectTo("forum", "listPostsByIdTopic", $topic->getId());
+        // } else {
+        //     // Redirige vers la liste des topics associés à la catégorie
+        //     $this->redirectTo("forum", "listTopicsByIdCategory", $topic->getCategory()->getId());
+        // }
 
         // Redirige vers la liste des posts
         $this->redirectTo("forum", "listPostsByIdTopic", $topic->getId());
