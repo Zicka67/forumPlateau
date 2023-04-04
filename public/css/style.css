@@ -146,12 +146,21 @@ input {
     margin: 0 auto;
 }
 
+.supprimerCategory {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    color: red;
+    margin-right: 20px;
+}
+
 .categoryContainer {
     background-color: rgb(200, 229, 246);
     margin: 20px 0 10px 0;
     display: flex;
     height: 50px;
     border-radius: 5px;
+    justify-content: space-between;
 }
 
 .categoryContainer a {
@@ -182,6 +191,14 @@ input {
     margin: 0 auto;
 }
 
+.supprimerTopic {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    color: red;
+    margin-right: 15px;
+}
+
 .topicContainerAdd {
     background-color: rgb(200, 229, 246);
     margin: 20px 0 10px 0;
@@ -208,7 +225,7 @@ input {
     margin-top: 50px;
     margin-bottom: 10px;
     align-items: center;
-    width: 25%;
+    width: 30%;
     border-radius: 5px;
     text-transform: uppercase;
     font-weight: bold;
@@ -219,6 +236,7 @@ input {
     background-color: rgb(200, 229, 246);
     margin: 20px 0 10px 0;
     display: flex;
+    justify-content: space-between;
     height: 50px;
     border-radius: 5px;
 }
@@ -255,8 +273,7 @@ span {
     font-family: 'Domine', serif;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 665px;
-    margin-top: 10px;
+    margin-left: 530px;
 }
 
 .centerTopics {
@@ -345,6 +362,12 @@ tbody {
 
 .postRepondre textarea{
     resize: none;
+}
+
+.supprimerPost {
+    color: red;
+    margin-left: 320px;
+    font-size: 20px;
 }
 
 /* ******************** LISTUSER ********************* */

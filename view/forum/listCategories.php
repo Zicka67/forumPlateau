@@ -18,7 +18,7 @@ if(!$categories){
             <div class="categoryContainer">
                 <a class="categoryLink" href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"> <br> <?=$category->getLabel()?></a> 
                 <?php if(App\Session::isAdmin()){ ?>
-                    <a href="index.php?ctrl=forum&action=deleteCategory&id=<?=$category->getId()?>">supprimer</a>
+                    <a class="supprimerCategory" href="index.php?ctrl=forum&action=deleteCategory&id=<?=$category->getId()?>">supprimer</a>
                 <?php } ?>
             </div>
             <?php } ?>

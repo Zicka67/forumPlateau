@@ -19,7 +19,7 @@ if (!$posts) { ?>
             <table class="listTable">
                 <thead>
                     <tr>
-                        <th>Message :</th>
+                        <th>Message :   <a class="supprimerPost" href="index.php?ctrl=forum&action=deletePost&id=">Supprimer</a></th>                   
                     </tr>
                 </thead>
                 <tbody>
