@@ -99,6 +99,7 @@ header nav {
     font-size: 2em;
     text-transform: uppercase;
     color: rgb(69, 69, 69);
+    margin-bottom: 20px;
 }
 
 
@@ -308,8 +309,12 @@ span {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 20px;
     border-radius: 5px;
+    margin-bottom: -50px;
+}
+
+.listTable:first-child {
+    margin-top: 70px;
 }
 
 .postContainer:nth-child(even) .listTable {
@@ -357,7 +362,7 @@ tbody {
 }
 
 .formPostRepondre {
-    margin-top: 10px;
+    margin-top: 70px;
 }
 
 .postRepondre textarea{
@@ -368,6 +373,13 @@ tbody {
     color: red;
     margin-left: 320px;
     font-size: 20px;
+}
+
+.test {
+    /* background-color: rgb(200, 229, 246); */
+    position: absolute;
+    display: flex;
+    justify-content: center;
 }
 
 /* ******************** LISTUSER ********************* */
