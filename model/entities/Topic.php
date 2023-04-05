@@ -108,6 +108,11 @@ final class Topic extends Entity{
                 return $this;
         }
         
+        public function isClosed()
+        {
+                return $this->closed == 0;
+        }
+        
         /**
         * Get the value of category
         */
@@ -125,30 +130,24 @@ final class Topic extends Entity{
                 
                 return $this;
         }
-
+        
         /**
-         * Get the value of countPosts
-         */ 
+        * Get the value of countPosts
+        */ 
         public function getCountPosts()
         {
                 return $this->countPosts;
         }
-
-//         public function getCountPosts()     A TESTER
-// {
-//     $postManager = new PostManager();
-//     return $postManager->getCountPostsByTopic($this->id);
-// }
-
+        
         /**
-         * Set the value of countPosts
-         *
-         * @return  self
-         */ 
+        * Set the value of countPosts
+        *
+        * @return  self
+        */ 
         public function setCountPosts($countPosts)
         {
                 $this->countPosts = $countPosts;
-
+                
                 return $this;
         }
 }
