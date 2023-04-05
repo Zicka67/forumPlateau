@@ -36,7 +36,7 @@ class ForumController extends AbstractController implements ControllerInterface
             // variable qui relie au manager
             $postManager = new PostManager();
             $topicManager = new TopicManager();
-
+            
             $topic = $topicManager->findOneById($id);
             // var_dump($topic); die;
             // renvoie 
@@ -182,12 +182,18 @@ class ForumController extends AbstractController implements ControllerInterface
                     $categoryManager = new CategoryManager();
                     $topicManager = new TopicManager();
                     
+                    $category = $categoryManager->findOneById($id);
+                    
+                    // Si la catégorie est introuvable, créez un objet Category par défaut avec un label "Introuvable"
+                    if (!$category) {
+                        $category = new \Model\Entities\Category(["label" => "Introuvable"]);
+                    }
                     //On return a la vue un tableau data avec l'id de la catégory ciblé 
                     // ( si on clique sur la catégory 2 il va récupérer une class catégory avec les infos de l'id 2 en DB et stock dans category)
                     return [
                         "view" => VIEW_DIR . "forum/listTopicsByIdCategory.php",
                         "data" => [
-                            "category" => $categoryManager->findOneById($id),
+                            "category" => $category,
                             //On cherche les topics dans la catégory de l'id ciblé 
                             // ( exemple id2 : va chercher en DB tt les topics de la category 2 et les stock dans topics)
                             "topics" => $topicManager->getTopicsByCategory($id),
@@ -267,6 +273,51 @@ class ForumController extends AbstractController implements ControllerInterface
                             // Redirige vers la liste des catégory
                             $this->redirectTo("forum", "listTopicsByIdCategory");
                         }
+                        
+                        
+                        // *****************LOCK UNLOCK **************
+                        
+                        public function closeTopic($topicId) {
+                            // var_dump($topicId); die;  works
+                            $topicManager = new TopicManager();
+                            $userManager = new UserManager();
+                            
+                            $topic = $topicManager->findOneById($topicId);
+                            
+                            // On recheck le role du user connecté dans la DB et non à partir du $_SESSION (pour si changement role en cours de session)
+                            $userConnectedDb = $userManager->findOneById($_SESSION["user"]->getId())->getRole();
+                            
+                            // Check si user = admin ou le créateur du topic avec l'id
+                            if(!empty($_SESSION["user"])) {
+                                if(($userConnectedDb == "ROLE_ADMIN") || ($_SESSION["user"]->getId() == $topic->getUser()->getId())) {
+                                    
+                                    // Switch closed (fermeture/reouverture)
+                                    if($topic->getClosed() == "1") {
+                                        $topicManager->lockTopicById($topicId, "0");
+                                        $_SESSION["success"] = "Le topic a été fermé";
+                                    }
+                                    else {
+                                        $topicManager->unlockTopicById($topicId, "1");
+                                        $_SESSION["success"] = "Le topic a été rouvert";
+                                    }
+                                    // var_dump($topic); die;
+                                    $category_id = $topic->getCategory()->getId();
+                                    header("Location: index.php?ctrl=forum&action=listTopicsByIdCategory&id=".$category_id);
+                                    // $this->redirectTo("forum", "listTopicsByIdCategory", ["id" => $category_id]);
+                                }
+                                else {
+                                    $_SESSION["error"] = "Vous devez être admin ou l'auteur de se topic";
+                                    $category_id = $topic->getCategory()->getId();
+                                    header("Location: index.php?ctrl=forum&action=listTopicsByIdCategory&id=".$category_id);
+                                    // $this->redirectTo("forum", "listTopicsByIdCategory", $topicId);
+                                }
+                                
+                            }
+                            
+                            
+                        }
+                        
+                        
                         
                         
                         
