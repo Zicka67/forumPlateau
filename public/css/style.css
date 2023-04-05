@@ -69,7 +69,7 @@ header nav {
 
 #forum p {
     margin: 0 auto;
-    width: 30%;
+    width: 35%;
     font-size: 25px;
     text-align: center;
 }
@@ -295,14 +295,14 @@ span {
 
 /* ********************* POST ************************ */
 
-.containerMain .postContainer:nth-child(even) {
+/* .containerMain .postContainer:nth-child(even) {
     margin-left: 40px;
   
 }
 .containerMain .postContainer:nth-child(odd) {
     margin-right: 40px;
    
-}
+} */
 
 .listTable {
     background-color: rgb(200, 229, 246);
@@ -375,10 +375,11 @@ tbody {
     font-size: 20px;
 }
 
-.test {
+.testt {
     /* background-color: rgb(200, 229, 246); */
-    position: absolute;
     display: flex;
+    position: absolute;
+    top: 150px;
     justify-content: center;
 }
 
