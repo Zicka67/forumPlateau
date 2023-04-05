@@ -13,7 +13,7 @@ if(!$categories){
     
     foreach($categories as $category) {
         ?>
-        <div class="containerMain">
+        <div class="containerMainCategory">
             <?php if (isset($category)) { ?>
             <div class="categoryContainer">
                 <a class="categoryLink" href="index.php?ctrl=forum&action=listTopicsByIdCategory&id=<?=$category->getId()?>"> <br> <?=$category->getLabel()?></a> 
