@@ -46,5 +46,17 @@ class CategoryManager extends Manager{
     {
         $this->delete($id);
     }
+
+    // public function testDeleteAll($id) {
+    //     $this->delete($id);
+
+    //     $sql = "
+    //     DELETE FROM post WHERE topic_id IN (SELECT id_topic FROM topic WHERE category_id = :id);
+    //     DELETE FROM topic WHERE category_id = :id;
+    //     DELETE FROM category WHERE id_category = :id;
+    //     ";
+    //     // relie à la fonction déjà faite dans DAO qui update la DB
+    //     DAO::insert($sql, ["id_category"=>$id]);
+    // }
     
 }
