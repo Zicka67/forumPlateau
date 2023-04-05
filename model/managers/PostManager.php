@@ -32,11 +32,17 @@ class PostManager extends Manager{
             DAO::select($sql, ['id' =>$id]),
             $this->className
         );
+        
+        
     }
     
- 
+    // public function deletePostsByTopic($topicId)
+    // {
+    //     $query = $this->db->prepare("DELETE FROM post WHERE topic_id = :topicId");
+    //     $query->bindParam(':topicId', $topicId, PDO::PARAM_INT);
+    //     $query->execute();
+    // }
     
-  
-
-
+   
+    
 }
