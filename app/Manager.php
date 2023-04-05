@@ -3,8 +3,11 @@
 
     abstract class Manager{
 
+        // protected $db;
+
         protected function connect(){
-            DAO::connect();
+          DAO::connect();
+        //   $this->db =  DAO::connect();
         }
 
         /**
