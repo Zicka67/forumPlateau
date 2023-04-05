@@ -140,10 +140,10 @@ input {
 
 /* ********************* Categorie ************************ */
 
-.containerMain {
+.containerMainCategory {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 50%;
     margin: 0 auto;
 }
 
@@ -185,16 +185,25 @@ input {
 
 /* ********************* Topic ************************ */
 
-.containerMain {
+.containerMainTopic {
+    margin: 50px auto 0 auto;
     display: flex;
     flex-direction: column;
-    width: 40%;
-    margin: 0 auto;
+    width: 500px;
+}
+
+.containerMainAdd a {
+    width: 180px;
+    height: 20px;
+    background-color: rgb(200, 229, 246);
+    display: block;
+    padding: 20px 20px 20px 15px;
+    border-radius: 5px;
 }
 
 .supprimerTopic {
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
     margin-top: 5px;
     color: red;
     margin-right: 15px;
@@ -202,11 +211,13 @@ input {
 
 .topicContainerAdd {
     background-color: rgb(200, 229, 246);
-    margin: 20px 0 10px 0;
+    margin: 20px auto 10px auto;
     display: flex;
     flex-direction: column;
-    height: 250px;
+    justify-content: center;
+    height: 300px;
     border-radius: 5px;
+    width: 50%;
 }
 
 .topicContainerAdd label {
@@ -221,7 +232,7 @@ input {
 
 .addTopicContainer {
     background-color: rgb(200, 229, 246);
-    display: flex;
+    /* display: flex; */
     height: 50px;
     margin-top: 50px;
     margin-bottom: 10px;
@@ -235,11 +246,17 @@ input {
 
 .topicContainer {
     background-color: rgb(200, 229, 246);
-    margin: 20px 0 10px 0;
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
+    margin: 20px 0 20px 0;
+    height: 60px;
     border-radius: 5px;
+    width: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flexTopic {
+    margin-bottom: 15px;
 }
 
 .topicContainer a {
@@ -255,13 +272,15 @@ span {
 .buton  {
     width: 120px;
     height: 35px;
-    color: rgb(69, 69, 69);
+    color: rgb(67, 67, 67);
     border: none;
-    background-color: rgb(200, 229, 246);
+    background-color: rgb(255, 255, 255);
     font-weight: 600;
     font-family: 'Domine', serif;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 
 .buton2  {
@@ -279,7 +298,7 @@ span {
 
 .centerTopics {
     background-color: rgb(200, 229, 246);
-    display: flex;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -292,17 +311,32 @@ span {
     color: rgb(45, 75, 248);
 }
 
+.flexTest {
 
+    flex-direction: column;
+}
+
+.adminPannel {
+    align-items: center;
+    justify-content: space-around;
+    
+    height: 30px;
+}
+
+.adminPannel a  {
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
 /* ********************* POST ************************ */
 
-/* .containerMain .postContainer:nth-child(even) {
-    margin-left: 40px;
-  
-}
-.containerMain .postContainer:nth-child(odd) {
-    margin-right: 40px;
-   
-} */
 
 .listTable {
     background-color: rgb(200, 229, 246);
