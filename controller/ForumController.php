@@ -16,6 +16,7 @@ class ForumController extends AbstractController implements ControllerInterface
     
     public function index()
     {
+        //on créer une instance de la class topic ( qui permettent de récupérer les infos en DB notemment avec un findOneById())
         $topicManager = new TopicManager();
         // $topicManager->findAll(); //on peut également ajouter une request SQL pour tirer par exemple
         
@@ -33,7 +34,7 @@ class ForumController extends AbstractController implements ControllerInterface
         public function listPostsByIdTopic($id)
         {
             
-            // variable qui relie au manager
+            //on créer une instance des classes post et topic ( qui permettent de récupérer les infos en DB notemment avec un findOneById())
             $postManager = new PostManager();
             $topicManager = new TopicManager();
             
@@ -54,6 +55,7 @@ class ForumController extends AbstractController implements ControllerInterface
             public function addPost()
             {
                 if (isset($_SESSION["user"]) && isset($_POST['envoyer'])) {
+                    //on créer une instance des classes post et user ( qui permettent de récupérer les infos en DB notemment avec un findOneById())
                     $postManager = new PostManager();
                     $userManager = new UserManager();
                     
@@ -88,9 +90,10 @@ class ForumController extends AbstractController implements ControllerInterface
                 $postId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
                 // var_dump($postId); die;
                 
-                // Créer un objet de postManager et appele la fonction postTopic
+                //on créer une instance des classes topic et post ( qui permettent de récupérer les infos en DB notemment avec un findOneById())
                 $postManager = new PostManager();
                 $topicManager = new TopicManager();
+
                 $topic = $postManager->findOneById($postId)->getTopic();
                 $countPosts = count(iterator_to_array($postManager->getPostsByTopic($topic->getId())));                
                 if ($countPosts == 1) {
@@ -114,7 +117,7 @@ class ForumController extends AbstractController implements ControllerInterface
             public function listCategories()
             {
                 
-                // Link au Manager
+                //on créer une instance de la class category( qui permettent de récupérer les infos en DB notemment avec un findOneById())
                 $categoryManager = new CategoryManager();
                 
                 
@@ -130,6 +133,7 @@ class ForumController extends AbstractController implements ControllerInterface
                 // AJOUT D'UN LABEL
                 public function addCategory()
                 {
+                    //on créer une instance de la classe category ( qui permettent de récupérer les infos en DB notemment avec un findOneById())
                     $categoryManager = new CategoryManager();
                     
                     //VERIFIER SI LE FORM EXISTE QUAND ON APPEL LA FUNCTION
@@ -178,7 +182,7 @@ class ForumController extends AbstractController implements ControllerInterface
                 public function listTopicsByIdCategory($id)
                 {
                     
-                    // On stock la classe category et topic dans une variable associer
+                    //on créer une instance des classes topic et category ( qui permettent de récupérer les infos en DB notemment avec un findOneById())
                     $categoryManager = new CategoryManager();
                     $topicManager = new TopicManager();
                     
@@ -218,8 +222,8 @@ class ForumController extends AbstractController implements ControllerInterface
                         //$id est = a l'id de la catégorie ici pour lui ajouter a lui un topic
                         public function addTopic($id)
                         {
-                            // var_dump($id); die;
-                            // On créer une classe topic et post grace aux managers et de la function construct, pour accéder aux données
+                            
+                            //on créer une instance des classes topic, post et category ( qui permettent de récupérer les infos en DB notemment avec un findOneById())
                             $topicManager = new TopicManager();
                             $postManager = new PostManager();
                             $categoryManager = new CategoryManager();
@@ -278,10 +282,10 @@ class ForumController extends AbstractController implements ControllerInterface
                         // *****************LOCK UNLOCK **************
                         
                         public function closeTopic($topicId) {
-                            // var_dump($topicId); die;  works
+                            //on créer une instance des classes topic et user ( qui permettent de récupérer les infos en DB notemment avec un findOneById())
                             $topicManager = new TopicManager();
                             $userManager = new UserManager();
-                            
+                            // On applique findOneById pour récupéer l'id de ce qu'on mettra en argument (ici $topicId) ici l'id du topic
                             $topic = $topicManager->findOneById($topicId);
                             
                             // On recheck le role du user connecté dans la DB et non à partir du $_SESSION (pour si changement role en cours de session)
@@ -289,7 +293,7 @@ class ForumController extends AbstractController implements ControllerInterface
                             
                             // Check si user = admin ou le créateur du topic avec l'id
                             if(!empty($_SESSION["user"])) {
-                                if(($userConnectedDb == "ROLE_ADMIN") || ($_SESSION["user"]->getId() == $topic->getUser()->getId())) {
+                                if(($userConnectedDb == "admin") || ($_SESSION["user"]->getId() == $topic->getUser()->getId())) {
                                     
                                     // Switch closed (fermeture/reouverture)
                                     if($topic->getClosed() == "1") {
@@ -300,16 +304,14 @@ class ForumController extends AbstractController implements ControllerInterface
                                         $topicManager->unlockTopicById($topicId, "1");
                                         $_SESSION["success"] = "Le topic a été rouvert";
                                     }
-                                    // var_dump($topic); die;
+                                    
                                     $category_id = $topic->getCategory()->getId();
                                     header("Location: index.php?ctrl=forum&action=listTopicsByIdCategory&id=".$category_id);
-                                    // $this->redirectTo("forum", "listTopicsByIdCategory", ["id" => $category_id]);
                                 }
                                 else {
                                     $_SESSION["error"] = "Vous devez être admin ou l'auteur de se topic";
                                     $category_id = $topic->getCategory()->getId();
                                     header("Location: index.php?ctrl=forum&action=listTopicsByIdCategory&id=".$category_id);
-                                    // $this->redirectTo("forum", "listTopicsByIdCategory", $topicId);
                                 }
                                 
                             }
