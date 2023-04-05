@@ -27,8 +27,9 @@ if (!$posts) { ?>
             <table class="listTable">
                 <thead>
                     <tr>
+                    <?php if (App\Session::isAdmin()) { ?>
                         <th>Message :  <a class="supprimerPost" href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer</a></th>
-                                    
+                        <?php } ?>         
                     </tr>
                 </thead>
                 <tbody>
