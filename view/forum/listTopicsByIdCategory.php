@@ -29,14 +29,16 @@ topic</a>
             <?= $topic->getUser()->getPseudo() ?>
             <!-- afficher le nombre de messages correspondant à chaque topic -->
             <span>(  <?= $topic->getCountPosts() ?> messages) </span>
-                <br>
-                </a>
-                <?php if (App\Session::isAdmin()) { ?>
-                    <a class="supprimerTopic"
-                    href="index.php?ctrl=forum&action=deleteTopic&id=<?= $topic->getId() ?>">supprimer</a>
+            <br>
+            </a>
+            <?php if (App\Session::isAdmin()) { ?>
+                <a class="supprimerTopic"
+                href="index.php?ctrl=forum&action=deleteTopic&id=<?= $topic->getId() ?>">supprimer</a>
+                <?php } ?> 
+                <?php if(App\Session::isAdmin() || ($topic->getUser()->getId() == $_SESSION["user"]->getId())) { ?>
                     <a class="" href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">(De)Verrouillage</a>
+                    <?php } ?>
                     
-                    <?php } ?> 
                     </div>
                     </div>
                     <?php } ?>
