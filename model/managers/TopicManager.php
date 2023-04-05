@@ -59,7 +59,7 @@ class TopicManager extends Manager{
         parent::connect();
         
         $sql =  "UPDATE " . $this->tableName .
-        " SET closed = 1
+        " SET closed = 0
         WHERE id_topic = :id";
         
         
@@ -71,7 +71,7 @@ class TopicManager extends Manager{
         parent::connect();
         
         $sql =  "UPDATE " . $this->tableName .
-        " SET closed = 0 
+        " SET closed = 1 
         WHERE id_topic = :id";
         
         
