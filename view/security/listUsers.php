@@ -10,13 +10,13 @@ if (!$users) {
 } else {
     ?>
     <table class="containerMainUser">
-    <thead >
+    <!-- <thead >
     <tr class="flex">
     <th>Pseudo</th>
     <th>Email</th>
     <th>Status</th>
     </tr>
-    </thead>
+    </thead> -->
     <tbody>
     <?php foreach ($users as $user): ?>
         <!-- Ternaire, la suite est exécuté que si la condition if est vraie --> 
