@@ -10,44 +10,48 @@ if (!$users) {
 } else {
     ?>
     <table class="containerMainUser">
-        <!-- <thead >
+    <thead >
+    <tr class="flex">
+    <th>Pseudo</th>
+    <th>Email</th>
+    <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($users as $user): ?>
+        <!-- Ternaire, la suite est exécuté que si la condition if est vraie --> 
+        <?php if ($user->getRole() != "admin") : ?>
             <tr class="flex">
-                <th>Pseudo</th>
-                <th>Email</th>
-                <th>Status</th>
+            <th>Pseudo :</th>
+            <td><?= $user->getPseudo() ?></td>
+            <th>Email :</th>
+            <td><?= $user->getEmail() ?></td>
+            <th>Status</th>
+            <td><?= $user->getStatus() ?></td>
             </tr>
-        </thead> -->
-        <tbody>
-        <?php foreach ($users as $user): ?>
-            <tr class="flex">
-                <th>Pseudo :</th>
-                <td><?= $user->getPseudo() ?></td>
-                <th>Email :</th>
-                <td><?= $user->getEmail() ?></td>
-                <th>Status</th>
-                <td><?= $user->getStatus() ?></td>
-                </tr>
+            <?php endif; ?>
+            
             <td>
-
-                <?php if ($_SESSION['user']->getRole() == 'admin' && $user->getStatus() == 1): ?>
-                    <form method="POST" action="index.php?ctrl=Security&action=banUser">
-                        <input type="hidden" name="id" value="<?= $user->getId() ?>">
-                        <button class="ban" type="submit">Bannir</button>
-                    </form>
+            <!-- ******** BAN HAMMER BUTON -->
+            <?php if ($_SESSION['user']->getRole() == 'admin' && $user->getStatus() == 1): ?>
+                <form method="POST" action="index.php?ctrl=Security&action=banUser">
+                <input type="hidden" name="id" value="<?= $user->getId() ?>">
+                <button class="ban" type="submit">Bannir</button>
+                </form>
                 <?php endif; ?>
-
+                
                 <?php if ($_SESSION['user']->getRole() == 'admin' && $user->getStatus() == 0): ?>
                     <form method="POST" action="index.php?ctrl=Security&action=UnBanUser">
-                        <input type="hidden" name="id" value="<?= $user->getId() ?>">
-                        <button class="ban" type="submit">Unban</button>
+                    <input type="hidden" name="id" value="<?= $user->getId() ?>">
+                    <button class="ban" type="submit">Unban</button>
                     </form>
-                <?php endif; ?>
-
-            </td>
-        
-    <?php endforeach; ?>
-</tbody>
-
-    </table>
-    <?php
-}
+                    <?php endif; ?>
+                    
+                    </td>
+                    
+                    <?php endforeach; ?>
+                    </tbody>
+                    
+                    </table>
+                    <?php
+                }
