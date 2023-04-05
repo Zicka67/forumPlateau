@@ -49,7 +49,7 @@
                             ?>
                             <a href="index.php?ctrl=Security&action=login">Connexion</a>
                             <a href="index.php?ctrl=Security&action=addUser">Inscription</a>
-                            <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
+                            <!-- <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a> -->
                         <?php
                         }
                    

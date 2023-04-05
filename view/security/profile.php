@@ -65,9 +65,9 @@
                          $user = $_SESSION["user"];
                          ?>
                          <p>Pseudo : <?= $user->getPseudo(); ?></p>
+                         <p>Email : <?= $user->getEmail(); ?></p>
                          <p>Role : <?= $user->getRole(); ?></p>
                          <p>Date d'inscription : <?= $user->getDateCreate(); ?></p>
-                         <p>Email : <?= $user->getEmail(); ?></p>
                          <!-- <?php var_dump($user->getStatus());die; ?> -->
                          <?php
                          // Vérifie si l'utilisateur est banni

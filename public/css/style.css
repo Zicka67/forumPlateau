@@ -27,7 +27,7 @@ h1, p, label, tr, td {
 /* ***************** HEADER ***************** */
 
 header nav {
-   
+    
     width: 100%;
     justify-content: space-between;
     display: flex;
@@ -40,6 +40,7 @@ header nav {
 
 #nav-left a{
     margin-right: 15px;
+    font-weight: bold;
 }
 
 #nav-right{
@@ -48,6 +49,7 @@ header nav {
 
 #nav-right a{
     margin: 0 10px 0 10px;
+    font-weight: bold;
 }
 
 
@@ -103,16 +105,10 @@ header nav {
 }
 
 
-.registerForm {
-    display: flex;
-    flex-direction: column;
-
-}
-
 .registerForm > div {
-    margin-top: 15px;
+    margin-top: 20px;
     margin-left: 15px;
-    width: 300px;
+    width: 30vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,11 +116,12 @@ header nav {
 
 .registerForm > div label {
     margin-right: 10px;
+    margin-bottom: 20px;
 }
 
 input {
     height: 25px;
-   
+    
 }
 
 /* label {
@@ -132,11 +129,64 @@ input {
 } */
 
 #button {
-    padding: 4px 10px 10px 10px;
     border-color: transparent;
-    background-color: rgb(45, 75, 248);
-    color: white;
+    background-color: rgb(200, 229, 246);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.5s;
 }
+
+#button input {
+    background-color: rgb(45, 75, 248);
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    height: 55px;
+    width: 530px;
+    border-radius: 5px;
+}
+#button:hover {
+    transform: scale(1.03);
+    transition: 0.5s;
+}
+
+#button2 {
+    border-color: transparent;
+    background-color: rgb(200, 229, 246);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#button2 input {
+    background-color: rgb(45, 75, 248);
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    height: 55px;
+    width: 530px;
+    border-radius: 5px;
+	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7); 
+	-webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7); 
+	-moz-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
+    transition: 0.5s; 
+}
+
+#button2:hover {
+    transform: scale(1.03);
+    transition: 0.5s;
+}
+
+
+
 
 /* ********************* Categorie ************************ */
 
@@ -197,7 +247,7 @@ input {
     height: 20px;
     background-color: rgb(200, 229, 246);
     display: block;
-    padding: 20px 20px 20px 15px;
+    padding: 25px 20px 20px 30px;
     border-radius: 5px;
 }
 
@@ -215,19 +265,21 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 300px;
+    align-items: center;
+    height: 400px;
     border-radius: 5px;
     width: 50%;
 }
 
 .topicContainerAdd label {
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .topicContainerAdd textarea {
     margin-top: 20px;
-    resize: none;
+    resize: vertical;
+    width: 95%;
 }
 
 .addTopicContainer {
@@ -298,7 +350,7 @@ span {
 
 .centerTopics {
     background-color: rgb(200, 229, 246);
-
+    
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -312,7 +364,7 @@ span {
 }
 
 .flexTest {
-
+    
     flex-direction: column;
 }
 
@@ -447,16 +499,127 @@ tbody {
 }
 
 .ban {
-   margin-top: 210px;
-   margin-left: -65px;
-   background-color: rgb(200, 229, 246);
-   border-radius: 5px;
-   border: none;
-   width: 65px;
-   height: 40px;
-   font-size: 15px;
-   font-weight: bold;
-   cursor: pointer;
+    margin-top: 210px;
+    margin-left: -65px;
+    background-color: rgb(200, 229, 246);
+    border-radius: 5px;
+    border: none;
+    width: 65px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ********************** LOG IN ********************* */
+.registerForm {
+    margin-top: 50px;
+    font-size: 30px;
+
+}
+
+/* test de not() */
+.registerForm label:not([for=""]) {
+    display: inline-block;
+    margin-right: 100px;
+
+   
+}
+
+.registerForm input:not([for=""]) {
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5); 
+	-webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5); 
+	-moz-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
+}
+
+.centerLogIn {
+    background-color: rgb(200, 229, 246);
+    width: 40%;  
+    margin: 10vh auto 0 auto;
+    display: flex;
+    justify-content: center;
+    height: 350px;
+}
+
+.centerRegister {
+    background-color: rgb(200, 229, 246);
+    width: 40%;  
+    margin: 10vh auto 0 auto;
+    display: flex;
+    justify-content: center;
+    height: 550px;
+    border-radius: 5px;
+    box-shadow: 0 0 50px rgba(140, 172, 247, 0.5); 
+	-webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
+	-moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.flexLogIn{
+ display: flex;
+ flex-direction: column;
+ /* background-color: blue; */
+}
+
+.email {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.email input {
+    width: 300px;
+    margin-left: 22px;
+    border: none;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.pass {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: -50px;
+}
+
+.pass input {
+    width: 300px;
+    border: none;
+    height: 50px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 25px;
+    margin-left: -35px;
+}
+
+.pseudo {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.pseudo input {
+    width: 300px;
+    border: none;
+    height: 50px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.confirmPass {
+  
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.confirmPass input {
+    width: 300px;
+    border: none;
+    height: 50px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 25px;
+    margin-left: -15px;
 }
 
 /* *********************FOOTER ********************** */
