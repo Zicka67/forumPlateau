@@ -54,6 +54,8 @@ if (!$posts) { ?>
             </div>
        <?php }  echo "<p class='testt'>Nombre de messages : " . $countPosts . "</p>"; ?>
        <div class="formPostRepondre">
+        <!-- Condition pour cacher le formulaire si le topic est closed ( = 0) -->
+        <?php if($topic->getClosed()) { ?>
                     <form method="POST" action="index.php?ctrl=forum&action=addPost">
                         <label class="postRepondre" for="">Envie de répondre ?
                     <textarea name="message" cols="105" rows="6"></textarea>
@@ -62,6 +64,7 @@ if (!$posts) { ?>
                     <input class="buton" type="submit" name="envoyer" value="Envoyer">
                         </label>
                     </form>
+     <?php } ?>
         </div>
     </div>
 <?php
