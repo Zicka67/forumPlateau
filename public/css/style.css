@@ -69,16 +69,16 @@ header nav {
     font-size: 40px;
 }
 
-#forum p {
+#forum p{
     margin: 0 auto;
     width: 35%;
-    font-size: 25px;
+    font-size: 1.1vw;
     text-align: center;
 }
 
 #forum2 p {
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     text-align: center;
     background-color: rgb(200, 229, 246);
     border-radius: 5px;
@@ -104,7 +104,6 @@ header nav {
     margin-bottom: 20px;
 }
 
-
 .registerForm > div {
     margin-top: 20px;
     margin-left: 15px;
@@ -115,6 +114,21 @@ header nav {
 }
 
 .registerForm > div label {
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+
+.registerFormLog > div {
+    margin-top: 20px;
+    margin-left: 15px;
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registerFormLog > div label {
     margin-right: 10px;
     margin-bottom: 20px;
 }
@@ -143,10 +157,10 @@ input {
     background-color: rgb(45, 75, 248);
     border: none;
     color: white;
-    font-size: 25px;
+    font-size: 1em;
     cursor: pointer;
     height: 55px;
-    width: 530px;
+    width: 24.5vw;
     border-radius: 5px;
 }
 #button:hover {
@@ -169,10 +183,10 @@ input {
     background-color: rgb(45, 75, 248);
     border: none;
     color: white;
-    font-size: 25px;
+    font-size: 1.7vw;
     cursor: pointer;
     height: 55px;
-    width: 530px;
+    width: 27.5vw;
     border-radius: 5px;
 	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7); 
 	-webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7); 
@@ -202,7 +216,7 @@ input {
     align-items: center;
     margin-top: 5px;
     color: red;
-    margin-right: 20px;
+    margin-right: 1.5vw;
 }
 
 .categoryContainer {
@@ -212,12 +226,27 @@ input {
     height: 50px;
     border-radius: 5px;
     justify-content: space-between;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); 
+	-webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); 
+	-moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+}
+
+.categoryContainer:hover {
+    transform: scale(1.02);
+    transition: 0.5s;
 }
 
 .categoryContainer a {
-    margin-left: 20px;
+    margin-left: 1.5vw;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 1vw;
+    align-items: center;
+}
+
+.categoryLink {
+    display: flex;
 }
 
 .categoryContainerAdd {
@@ -227,6 +256,14 @@ input {
     flex-direction: column;
     height: 250px;
     border-radius: 5px;
+    box-shadow: 0 0 50px rgba(140, 172, 247, 0.5); 
+	-webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
+	-moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.categoryContainerAdd input{
+    width: 10vw;
+    margin-top: 10px;
 }
 
 .categoryContainerAdd label {
@@ -243,7 +280,7 @@ input {
 }
 
 .containerMainAdd a {
-    width: 180px;
+    width: 9.5vw;
     height: 20px;
     background-color: rgb(200, 229, 246);
     display: block;
@@ -284,12 +321,12 @@ input {
 
 .addTopicContainer {
     background-color: rgb(200, 229, 246);
-    /* display: flex; */
-    height: 50px;
+    font-size: 0.9vw;
+    height: 3vh;
     margin-top: 50px;
     margin-bottom: 10px;
     align-items: center;
-    width: 30%;
+    width: 3vw;
     border-radius: 5px;
     text-transform: uppercase;
     font-weight: bold;
@@ -319,15 +356,21 @@ input {
 
 span {
     text-transform: lowercase;
+    font-size: 0.9vw;
+}
+
+strong {
+    font-weight: bold;
+    font-size: 1.1vw;
 }
 
 .buton  {
-    width: 120px;
+    width: 5vw;
     height: 35px;
     color: rgb(67, 67, 67);
     border: none;
     background-color: rgb(255, 255, 255);
-    font-weight: 600;
+    font-weight: bold;
     font-family: 'Domine', serif;
     border-radius: 5px;
     cursor: pointer;
@@ -336,16 +379,18 @@ span {
 }
 
 .buton2  {
-    width: 120px;
+    width: 5vw;
     height: 35px;
     color: rgb(69, 69, 69);
     border: none;
     background-color: rgb(200, 229, 246);
-    font-weight: 600;
+    font-weight: bold;
     font-family: 'Domine', serif;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 530px;
+    margin-left: 32.2vw;
+    margin-top: 10px;
+    font-size: 1vw;
 }
 
 .centerTopics {
@@ -370,9 +415,10 @@ span {
 
 .adminPannel {
     align-items: center;
+    display: flex;
     justify-content: space-around;
-    
     height: 30px;
+    width: 31vw;
 }
 
 .adminPannel a  {
@@ -514,16 +560,24 @@ tbody {
 /* ********************** LOG IN ********************* */
 .registerForm {
     margin-top: 50px;
-    font-size: 30px;
+    font-size: 2vw;
+}
+
+.registerFormLog {
+    margin-top: 50px;
+    font-size: 1.2em;
 
 }
 
 /* test de not() */
 .registerForm label:not([for=""]) {
     display: inline-block;
-    margin-right: 100px;
+    margin-right: 3vw;
+}
 
-   
+.registerFormLog label:not([for=""]) {
+    display: inline-block;
+    margin-right: 50px;
 }
 
 .registerForm input:not([for=""]) {
@@ -539,6 +593,16 @@ tbody {
     display: flex;
     justify-content: center;
     height: 350px;
+    border-radius: 5px;
+    box-shadow: 0 0 50px rgba(140, 172, 247, 0.5); 
+	-webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
+	-moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.registerFormLog input{
+    box-shadow: 0 0 50px rgba(140, 172, 247, 0.5); 
+	-webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
+	-moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .centerRegister {
@@ -560,66 +624,98 @@ tbody {
  /* background-color: blue; */
 }
 
+.emailLog {
+    font-weight: bold;
+    font-size: 1.5vw;
+}
+
+.emailLog input {
+    width: 16vw;
+    border: none;
+    height: 2vw;
+    border-radius: 5px;
+    font-size: 1.563rem;
+    margin-bottom: 20px;
+}
+
+.passLog {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.5vw;
+    margin-left: -1.5vw;
+}
+
+.passLog input {
+    width: 16vw;
+    border: none;
+    height: 2vw;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 1.3vw;
+    margin-left: -1vw;
+}
+
 .email {
     font-weight: bold;
-    font-size: 30px;
+    font-size: 1.5vw;
 }
 
 .email input {
-    width: 300px;
-    margin-left: 22px;
+    width: 16vw;
+    margin-left: 1vw;
     border: none;
-    height: 50px;
+    height: 2vw;
     border-radius: 5px;
-    font-size: 25px;
+    font-size: 1.3vw;
     margin-bottom: 20px;
+    
 }
 
 .pass {
     margin-top: 20px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 1.5vw;
     margin-left: -50px;
 }
 
 .pass input {
-    width: 300px;
+    width: 16vw;
     border: none;
-    height: 50px;
+    height: 2vw;
     border-radius: 5px;
     margin-bottom: 20px;
-    font-size: 25px;
-    margin-left: -35px;
+    font-size: 1.3vw;
+    margin-left: -1.5vw;
 }
 
 .pseudo {
     font-weight: bold;
-    font-size: 30px;
+    font-size: 1.5vw;
 }
 
 .pseudo input {
-    width: 300px;
+    width: 16vw;
     border: none;
-    height: 50px;
+    height: 2vw;
     border-radius: 5px;
     margin-bottom: 20px;
-    font-size: 25px;
+    font-size: 1.3vw;
 }
 
 .confirmPass {
   
     font-weight: bold;
-    font-size: 30px;
+    font-size: 1.5vw;
 }
 
 .confirmPass input {
-    width: 300px;
+    width: 16vw;
     border: none;
-    height: 50px;
+    height: 2vw;
     border-radius: 5px;
     margin-bottom: 20px;
-    font-size: 25px;
-    margin-left: -15px;
+    font-size:  1.3vw;
+    margin-left: -0.5vw;
 }
 
 /* *********************FOOTER ********************** */
@@ -629,3 +725,6 @@ footer {
     justify-content: center;
     margin-top: 450px;
 }
+
+
+/* ************TEST *************** */

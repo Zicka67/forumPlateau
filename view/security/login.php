@@ -12,16 +12,16 @@
 
       <div class="centerLogIn">
 
-        <form class="registerForm" method="POST" action="index.php?ctrl=Security&action=login">
+        <form class="registerFormLog" method="POST" action="index.php?ctrl=Security&action=login">
 
           <div class="flexLogIn">
 
-          <div class="email">
+          <div class="emailLog">
             <label for="email">Email :</label>
             <input type="email" id="email" name="email" required>
           </div>
 
-          <div class="pass">
+          <div class="passLog">
             <label for="password">Password :</label>
             <input type="password" id="password" name="password" required>
           </div>
