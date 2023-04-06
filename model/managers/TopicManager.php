@@ -24,7 +24,7 @@ class TopicManager extends Manager{
     public function getTopicsByCategory($id) {
         parent::connect();
         $sql ="
-        SELECT title, creationDate, t.user_id, t.id_topic, COUNT(p.topic_id) AS countPosts
+        SELECT title, creationDate, t.user_id, t.id_topic, COUNT(p.topic_id) AS countPosts, closed
         FROM ".$this->tableName." t
         LEFT JOIN post p ON p.topic_id = t.id_topic
         WHERE t.category_id = :id
