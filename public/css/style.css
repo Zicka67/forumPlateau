@@ -101,7 +101,8 @@ header nav {
     font-size: 2em;
     text-transform: uppercase;
     color: rgb(69, 69, 69);
-    margin-bottom: 20px;
+    margin-bottom: 80px;
+    margin-top: 50px;
 }
 
 .registerForm > div {
@@ -230,10 +231,12 @@ input {
 	-webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); 
 	-moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     transition: 0.5s;
+    filter: grayscale(100%);
 }
 
 .categoryContainer:hover {
-    transform: scale(1.02);
+    background-color: rgb(172, 209, 231);
+    filter: grayscale(0%);
     transition: 0.5s;
 }
 
@@ -264,6 +267,8 @@ input {
 .categoryContainerAdd input{
     width: 10vw;
     margin-top: 10px;
+    border: none;
+    border-radius: 5px;
 }
 
 .categoryContainerAdd label {
@@ -305,18 +310,33 @@ input {
     align-items: center;
     height: 400px;
     border-radius: 5px;
-    width: 50%;
+    width: 40vw;
+    box-shadow: 0 0 50px rgba(140, 172, 247, 0.5); 
+    -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .topicContainerAdd label {
     margin-left: 20px;
-    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.1vw;
+}
+
+.topicContainerAdd input {
+    width: 8.5vw;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1vw;
 }
 
 .topicContainerAdd textarea {
     margin-top: 20px;
     resize: vertical;
     width: 95%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1vw;
 }
 
 .addTopicContainer {
@@ -338,10 +358,18 @@ input {
     margin: 20px 0 20px 0;
     height: 60px;
     border-radius: 5px;
-    width: 600px;
+    width: 32vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: rgb(172, 209, 231);
+    filter: grayscale(100%);
+    transition: 0.5s;
+}
+
+.topicContainer:hover {
+    transition: 0.5s;
+    filter: grayscale(0%);
 }
 
 .flexTopic {
@@ -364,18 +392,33 @@ strong {
     font-size: 1.1vw;
 }
 
-.buton  {
+.buton0  {
     width: 5vw;
     height: 35px;
-    color: rgb(67, 67, 67);
+    color: rgb(69, 69, 69);
     border: none;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(200, 229, 246);
     font-weight: bold;
     font-family: 'Domine', serif;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 20px;
     margin-top: 20px;
+    font-size: 1vw;
+}
+
+.buton  {
+    width: 5vw;
+    height: 35px;
+    color: rgb(69, 69, 69);
+    border: none;
+    background-color: rgb(200, 229, 246);
+    font-weight: bold;
+    font-family: 'Domine', serif;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 29.6vw;
+    margin-top: 20px;
+    font-size: 1vw;
 }
 
 .buton2  {
@@ -409,20 +452,22 @@ strong {
 }
 
 .flexTest {
-    
     flex-direction: column;
 }
 
 .adminPannel {
-    align-items: center;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-between; */
     height: 30px;
     width: 31vw;
+    font-size: 1vw;
+}
+
+.adminPannel a:nth-child(2) {
+    margin-left: 14.5vw;
 }
 
 .adminPannel a  {
-    margin-left: 30px;
     font-weight: bold;
 }
 
@@ -442,11 +487,30 @@ strong {
     flex-direction: column;
     justify-content: center;
     border-radius: 5px;
-    margin-bottom: -50px;
+    padding: 10px;
+}
+
+
+.listTable thead {
+    display: flex;
+    justify-content: space-around;
+}
+
+.listTable tr {
+    min-width: 100%;
+}
+
+.listTable th {
+    min-width: 100%;
 }
 
 .listTable:first-child {
-    margin-top: 70px;
+    margin-top: 50px;
+}
+
+.postContainer {
+    width: 50vw;
+    margin: 0 auto;
 }
 
 .postContainer:nth-child(even) .listTable {
@@ -471,7 +535,7 @@ tbody tr {
 }
 
 th {
-    font-size: 25px;
+    font-size: 1.4vw;
     color: rgb(69, 69, 69);
     font-weight: bold;
 }
@@ -490,29 +554,44 @@ tbody {
 
 .bottomInfos {
     display: block;
-    float: right;
+
 }
 
 .formPostRepondre {
-    margin-top: 70px;
+    margin-top: 50px;
+    font-size: 1.1vw;
+    font-weight: bold;
 }
 
-.postRepondre textarea{
-    resize: none;
+.postTextarea {
+    width: 49vw;
+    padding: 10px;
+    resize: vertical;
+    font-size: 1.1vw;
+    margin-top: 20px;
 }
 
 .supprimerPost {
-    color: red;
-    margin-left: 320px;
-    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 1px;
 }
 
-.testt {
-    /* background-color: rgb(200, 229, 246); */
+.supprimerPost a {
+    color: red;
+    font-size: 1vw;
+}
+
+.absolute {
     display: flex;
     position: absolute;
-    top: 150px;
-    justify-content: center;
+    top: 270px;
+}
+
+.containerMain {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: 0 auto;
 }
 
 /* ******************** LISTUSER ********************* */
@@ -529,10 +608,12 @@ tbody {
 .flex {
     background-color: rgb(200, 229, 246);
     height: 200px;
-    width: 25%;
+    width: 20vw;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
+    padding: 5px;
+    font-size: 1.2vw;
 }
 
 .flex > th {
@@ -545,16 +626,17 @@ tbody {
 }
 
 .ban {
-    margin-top: 210px;
-    margin-left: -65px;
+    margin-top: 230px;
+    margin-left: -3.5vw;
     background-color: rgb(200, 229, 246);
     border-radius: 5px;
     border: none;
-    width: 65px;
-    height: 40px;
+    width: 3.2vw;
+    height: 50px;
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
+    font-size: 0.8vw;
 }
 
 /* ********************** LOG IN ********************* */

@@ -257,8 +257,9 @@ class ForumController extends AbstractController implements ControllerInterface
                             if (isset($_SESSION["user"])) {
                                 
                                 //VERIFIER SI LE FORM EXISTE QUAND ON APPEL LA FUNCTION
+                                
                                 if (isset($_POST['modifier'])) {
-                                    
+                                    // var_dump($_POST); die;
                                     $topicTitle = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                                     $newMessage = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                                     $user = $_SESSION["user"]->getId();

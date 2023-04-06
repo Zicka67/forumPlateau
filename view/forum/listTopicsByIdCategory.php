@@ -7,9 +7,16 @@ $category = $result["data"]["category"];
 <?= $category->getLabel() ?>
 </h1>
 
+<?php if (!App\Session::getUser()) { 
+    // Affiche un message d'erreur
+    echo "Veuillez vous connecter pour accéder à cette page.";
+    // Arrête l'exécution du code
+    exit();
+} ?>
+
 <!-- On va chercher dans le construct getLabel avec la $category qui a accées aux data -->
 <?php if (!$topics) { ?>
-    
+
     
     <div class="centerTopics">Vide pour le moment</div>
     <?php } else { ?>
@@ -24,13 +31,13 @@ $category = $result["data"]["category"];
             <div class="flexTopic">
             <a href="index.php?ctrl=forum&action=listPostsByIdTopic&id=<?= $topic->getId() ?>">
             <br>
-            <?= $topic->getTitle() ?>
+            <strong><?= $topic->getTitle() ?></strong>
             </div>
             <div>
             <span>crée le</span>
-            <?= DateTime::createFromFormat('d/m/Y, H:i:s', $topic->getCreationDate())->format('d/m/Y') ?>
+            <span> <?= DateTime::createFromFormat('d/m/Y, H:i:s', $topic->getCreationDate())->format('d/m/Y') ?></span>
             <span>par</span>
-            <?= $topic->getUser()->getPseudo() ?>
+            <span><?= $topic->getUser()->getPseudo() ?> </span>
             <!-- afficher le nombre de messages correspondant à chaque topic -->
             <span>(  <?= $topic->getCountPosts() ?> messages) </span>
             </div>
@@ -43,8 +50,8 @@ $category = $result["data"]["category"];
     <?php } ?> 
     <?php if(App\Session::isAdmin() || ($topic->getUser()->getId() == $_SESSION["user"]->getId())) { ?>
         <a class="" href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">(De)Verrouillage</a>  
-        <i class="fa-solid <?= $topic->isClosed() ? 'fa-unlock green' : 'fa-lock red' ?>"></i>
-    <?php } ?>
+        <i class="fa-solid <?= $topic->isClosed() == true ? 'fa-lock' : 'fa-lock-open' ?> <?= $topic->isClosed() == false ? 'green' : 'red' ?>"></i> 
+             <?php } ?>
 </div>
 
         <?php } ?>
