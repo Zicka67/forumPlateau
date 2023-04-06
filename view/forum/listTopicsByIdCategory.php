@@ -3,7 +3,7 @@ $topics = $result["data"]["topics"];
 $category = $result["data"]["category"];
 ?>
 
-<h1 class="categoryList">liste des topics
+<h1 class="topicList">liste des topics
 <?= $category->getLabel() ?>
 </h1>
 
@@ -25,7 +25,10 @@ $category = $result["data"]["category"];
         <a class="addTopicContainer" href="index.php?ctrl=Forum&action=addTopic&id=<?= $category->getId() ?>">Ajouter un
         topic</a>
         </div>
-        <?php foreach ($topics as $topic) { ?>
+        <?php foreach ($topics as $topic) { 
+            $lock = ($topic->getClosed()) ? 'fa-lock' : 'fa-lock-open';
+            $color = ($topic->getClosed()) ? 'red' : 'green';
+            ?>
             <div class="topicContainer">
             
             <div class="flexTopic">
@@ -45,16 +48,16 @@ $category = $result["data"]["category"];
             
             </div>
             <div class="adminPannel">
-    <?php if (App\Session::isAdmin()) { ?>
-        <a class="supprimerTopic" href="index.php?ctrl=forum&action=deleteTopic&id=<?= $topic->getId() ?>">Supprimer</a>
-    <?php } ?> 
-    <?php if(App\Session::isAdmin() || ($topic->getUser()->getId() == $_SESSION["user"]->getId())) { ?>
-        <a class="" href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">(De)Verrouillage</a>  
-        <i class="fa-solid <?= $topic->isClosed() == true ? 'fa-lock' : 'fa-lock-open' ?> <?= $topic->isClosed() == false ? 'green' : 'red' ?>"></i> 
-             <?php } ?>
-</div>
-
-        <?php } ?>
+                <?php if (App\Session::isAdmin()) { ?>
+                    <a class="supprimerTopic" href="index.php?ctrl=forum&action=deleteTopic&id=<?= $topic->getId() ?>">Supprimer</a>
+                <?php } ?> 
+                <?php if(App\Session::isAdmin() || ($topic->getUser()->getId() == $_SESSION["user"]->getId())) { ?>
+                    <a class="" href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">(De)Verrouillage</a>  
+                    <i class="fa-solid <?= $lock ?> <?= $color ?>"></i> 
+                <?php } ?>
     </div>
+
+                <?php } ?>
+        </div>
 <?php } ?>
                             
