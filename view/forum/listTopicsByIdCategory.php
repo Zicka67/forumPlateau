@@ -16,9 +16,13 @@ $category = $result["data"]["category"];
 
 <!-- On va chercher dans le construct getLabel avec la $category qui a accées aux data -->
 <?php if (!$topics) { ?>
-
-    
-    <div class="centerTopics">Vide pour le moment</div>
+    <div class="containerMainTopic2">
+    <div class="containerMainAdd">
+    <a class="addTopicContainer" href="index.php?ctrl=Forum&action=addTopic&id=<?= $category->getId() ?>">Ajouter un
+        topic</a>
+        </div>
+        </div>
+    <div class="centerTopics2">Vide pour le moment</div>
     <?php } else { ?>
         <div class="containerMainTopic">
         <div class="containerMainAdd">
@@ -26,8 +30,8 @@ $category = $result["data"]["category"];
         topic</a>
         </div>
         <?php foreach ($topics as $topic) { 
-            $lock = ($topic->getClosed()) ? 'fa-lock' : 'fa-lock-open';
-            $color = ($topic->getClosed()) ? 'red' : 'green';
+            $lock = ($topic->getClosed()) ? 'fa-lock-open' : 'fa-lock';
+            $color = ($topic->getClosed()) ? 'green' : 'red';
             ?>
             <div class="topicContainer">
             

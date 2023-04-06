@@ -5,8 +5,8 @@ if(isset($_SESSION["user"])){
     ?>
     
     <h1 class="categoryList">EDIT TOPIC</h1>
-    
-        <form method="POST" action="index.php?ctrl=Forum&action=addTopic&id=<?=$category->getId()?>"> <!-- Redirection vers l'id de la catégorie -->
+
+        <form method="POST" action="index.php?ctrl=Forum&action=addTopic&id=<?= $category->getId() ?>"> 
                 <div class="containerMain">
                         <div class="topicContainerAdd">
                                 <label for="">

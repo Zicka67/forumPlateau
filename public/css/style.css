@@ -24,6 +24,10 @@ h1, p, label, tr, td {
     font-family: 'Domine', serif;
 }
 
+li{
+    list-style: none;
+}
+
 /* ***************** HEADER ***************** */
 
 header nav {
@@ -34,18 +38,23 @@ header nav {
     font-size: 20px;
 }
 
-#nav-left{
-    margin: 30px 0 50px 30px;
+.nav-left ul {
+   margin-top: 2vw;
+   margin-left: 2vw;
 }
 
-#nav-left a{
-    margin-right: 15px;
-    font-weight: bold;
+.nav-left a{
+    /* margin-right: 15px;
+    font-weight: bold; */
 }
 
-#nav-right{
-    margin: 30px 50px 0 30px;
-}
+.nav-right {
+    display: flex;
+    margin-top: 2vw;
+    margin-right: 3vw;
+    /* background-color: bisque; */
+    width: 12vw;
+ }
 
 #nav-right a{
     margin: 0 10px 0 10px;
@@ -63,11 +72,14 @@ header nav {
 
 .center {
     display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-    margin-top: 120px;
+    width: 50vw;
     font-size: 40px;
+    margin: 0 auto 3vw auto;
+    padding-top: 10vw;
+    
+    justify-content: center;
 }
+
 
 #forum p{
     margin: 0 auto;
@@ -77,7 +89,7 @@ header nav {
 }
 
 #forum h1 {
-   font-size: 2.5vw;
+    font-size: 2.5vw;
 }
 
 #forum2 p {
@@ -183,9 +195,9 @@ input {
     height: 55px;
     width: 27.5vw;
     border-radius: 5px;
-	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7); 
-	-webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7); 
-	-moz-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7); 
+    -webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7); 
+    -moz-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
     transition: 0.5s; 
 }
 
@@ -233,8 +245,8 @@ input {
     border-radius: 5px;
     justify-content: space-between;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); 
-	-webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); 
-	-moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     transition: 0.5s;
     filter: grayscale(100%);
 }
@@ -265,8 +277,8 @@ input {
     height: 250px;
     border-radius: 5px;
     box-shadow: 0 0 50px rgba(140, 172, 247, 0.5); 
-	-webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
-	-moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .categoryContainerAdd input{
@@ -297,6 +309,13 @@ input {
     display: flex;
     flex-direction: column;
     width: 500px;
+}
+
+.containerMainTopic2 {
+    margin: 0 auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 37vw;
 }
 
 .containerMainAdd a {
@@ -453,18 +472,32 @@ strong {
 
 .centerTopics {
     background-color: rgb(200, 229, 246);
-    
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 15%;
+    width: 15vw;
     height: 40px;
     margin: 50px auto;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 1.1vw;
     font-weight: bold;
     color: rgb(45, 75, 248);
 }
+
+.centerTopics2 {
+    background-color: rgb(200, 229, 246);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15vw;
+    height: 40px;
+    margin: 50px auto;
+    border-radius: 5px;
+    font-size: 1.1vw;
+    font-weight: bold;
+    color: rgb(248, 45, 45);
+}
+
 
 .flexTest {
     flex-direction: column;
@@ -583,7 +616,7 @@ tbody {
 
 .bottomInfos {
     display: block;
-
+    
 }
 
 .formPostRepondre {
@@ -677,7 +710,7 @@ tbody {
 .registerFormLog {
     margin-top: 50px;
     font-size: 1.2em;
-
+    
 }
 
 /* test de not() */
@@ -693,8 +726,8 @@ tbody {
 
 .registerForm input:not([for=""]) {
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5); 
-	-webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5); 
-	-moz-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.5);
 }
 
 .centerLogIn {
@@ -706,14 +739,14 @@ tbody {
     height: 350px;
     border-radius: 5px;
     box-shadow: 0 0 50px rgba(140, 172, 247, 0.5); 
-	-webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
-	-moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .registerFormLog input{
     box-shadow: 0 0 50px rgba(140, 172, 247, 0.5); 
-	-webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
-	-moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .centerRegister {
@@ -725,14 +758,14 @@ tbody {
     height: 550px;
     border-radius: 5px;
     box-shadow: 0 0 50px rgba(140, 172, 247, 0.5); 
-	-webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
-	-moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .flexLogIn{
- display: flex;
- flex-direction: column;
- /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    /* background-color: blue; */
 }
 
 .emailLog {
@@ -814,7 +847,7 @@ tbody {
 }
 
 .confirmPass {
-  
+    
     font-weight: bold;
     font-size: 1.5vw;
 }
@@ -845,13 +878,13 @@ footer {
 
 .noselect {
     -webkit-touch-callout: none;
-      -webkit-user-select: none;
-       -khtml-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none;
-      -webkit-tap-highlight-color: transparent;
-  }
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
 .toTop {
     width: 75px;
@@ -865,49 +898,136 @@ footer {
     position: absolute;
     right: 2vw;
     bottom: 2vw;
-  }
+}
 
-  button svg {
+.toTop svg {
     fill: white;
     width: 30px;
     height: 30px;
     position: absolute;
     transform: translateX(-50%) translateY(-50%);
-  }
+}
 
-  button:before {
+.toTop:before {
     position: absolute;
     transform: translateX(-50%) translateY(45px);
     font-size: 15px;
     transition: 200ms;
     color: transparent;
     font-weight: bold;
-  }
-  
-  button:hover {
+}
+
+.toTop:hover {
     box-shadow: 0 1px 5px rgba(0,0,0,0.2);
     width: 80px;
     height: 80px;
-  }
-  
-  button:hover::before {
+}
+
+.toTop:hover::before {
     color: #fff;
-  }
-  
-  button:hover svg {
-      animation: bounce 2s infinite linear;
-  }
-  
-  @keyframes bounce {
+}
+
+.toTop:hover svg {
+    animation: bounce 2s infinite linear;
+}
+
+@keyframes bounce {
     0% {transform: translateX(-50%) translateY(-50%)}
     25% {transform: translateX(-50%) translateY(-65%)}
     50% {transform: translateX(-50%) translateY(-50%)}
     75% {transform: translateX(-50%) translateY(-35%)}
     100% {transform: translateX(-50%) translateY(-50%)}
-  }
-  
-  button:focus {
-    outline: none;
-  }
+}
 
-  /* ********************************* BURGER + RESPONSIVE ************************** */
+.toTop:focus {
+    outline: none;
+}
+
+/* ********************************* BURGER + RESPONSIVE ************************** */
+
+
+.menu-burger {
+    cursor: pointer;
+    display: none;
+    width: 4vw;
+    height: 3vw;
+    position: relative;
+    float: right;
+    margin-right: 4vw;
+    margin-top: 3vw;
+}
+.ligne-burger {
+    background-color: #000;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    transition: all 0.3s;
+}
+
+.ligne-burger:nth-child(1) {
+    top: 0;
+}
+
+.ligne-burger:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ligne-burger:nth-child(3) {
+    bottom: 0;
+}
+
+.menu-navigation {
+    float: right;
+}
+
+.menu-navigation ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+.menu-navigation li {
+    padding: 10px;
+}
+
+.menu-navigation a {
+    text-decoration: none;
+    color: #000;
+}
+
+
+@media screen and (max-width: 1050px) {
+    .menu-burger {
+        display: inline-block;
+    }
+    
+    .menu-navigation {
+        display: none;
+    }
+    
+    .menu-navigation-active {
+        display: block;
+        float: none;
+    }
+    
+    .menu-navigation ul {
+        display: block;
+    }
+    
+    .menu-navigation li {
+        padding: 10px 0;
+    }
+    .center {
+        padding-left: 8vw;
+    }
+
+    .nav-right {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2vw;
+        margin-right: 3vw;
+        /* background-color: bisque; */
+        width: 12vw;
+     }
+}

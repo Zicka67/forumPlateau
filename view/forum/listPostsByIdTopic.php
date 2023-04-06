@@ -8,7 +8,7 @@ $countPosts = 0;
 ?>
 
 
-<h1 class="categoryList">La liste des messages dans le <?= $topic->getTitle() ?></h1>
+<h1 class="postList">La liste des messages dans le <?= $topic->getTitle() ?></h1>
 
 <?php
 if (!$posts) { ?>
