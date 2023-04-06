@@ -71,9 +71,13 @@ header nav {
 
 #forum p{
     margin: 0 auto;
-    width: 35%;
+    width: 40vw;
     font-size: 1.1vw;
     text-align: center;
+}
+
+#forum h1 {
+   font-size: 2.5vw;
 }
 
 #forum2 p {
@@ -93,16 +97,6 @@ header nav {
 .forum2container {
     width: 30%;
     margin: 0 auto;
-}
-
-.categoryList {
-    display: flex;
-    justify-content: center;
-    font-size: 2em;
-    text-transform: uppercase;
-    color: rgb(69, 69, 69);
-    margin-bottom: 80px;
-    margin-top: 50px;
 }
 
 .registerForm > div {
@@ -205,6 +199,17 @@ input {
 
 /* ********************* Categorie ************************ */
 
+
+.categoryList {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: rgb(69, 69, 69);
+    margin-bottom: 80px;
+    margin-top: 50px;
+}
+
 .containerMainCategory {
     display: flex;
     flex-direction: column;
@@ -277,8 +282,18 @@ input {
 
 /* ********************* Topic ************************ */
 
+.topicList {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: rgb(69, 69, 69);
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
+
 .containerMainTopic {
-    margin: 50px auto 0 auto;
+    margin: 0 auto 0 auto;
     display: flex;
     flex-direction: column;
     width: 500px;
@@ -431,7 +446,7 @@ strong {
     font-family: 'Domine', serif;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 32.2vw;
+    margin-left: 29.5vw;
     margin-top: 10px;
     font-size: 1vw;
 }
@@ -464,7 +479,11 @@ strong {
 }
 
 .adminPannel a:nth-child(2) {
-    margin-left: 14.5vw;
+    margin-left: 15vw;
+}
+
+.adminPannel i {
+    margin-left: 1vw;
 }
 
 .adminPannel a  {
@@ -479,6 +498,16 @@ strong {
     color: red;
 }
 /* ********************* POST ************************ */
+
+.postList {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: rgb(69, 69, 69);
+    margin-bottom: 90px;
+    margin-top: 50px;
+}
 
 
 .listTable {
@@ -806,7 +835,79 @@ footer {
     display: flex;
     justify-content: center;
     margin-top: 450px;
+    position: relative;
+    bottom: 20px;
 }
 
 
-/* ************TEST *************** */
+/* ************ TOTOP *************** */
+
+
+.noselect {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+      -webkit-tap-highlight-color: transparent;
+  }
+
+.toTop {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    background-color: #5de6de;
+    background-image: linear-gradient(150deg, #aee6f7 0%, #4b70f4 74%);
+    border: none;
+    border-radius: 50%;
+    transition: 200ms;
+    position: absolute;
+    right: 2vw;
+    bottom: 2vw;
+  }
+
+  button svg {
+    fill: white;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  button:before {
+    position: absolute;
+    transform: translateX(-50%) translateY(45px);
+    font-size: 15px;
+    transition: 200ms;
+    color: transparent;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+    width: 80px;
+    height: 80px;
+  }
+  
+  button:hover::before {
+    color: #fff;
+  }
+  
+  button:hover svg {
+      animation: bounce 2s infinite linear;
+  }
+  
+  @keyframes bounce {
+    0% {transform: translateX(-50%) translateY(-50%)}
+    25% {transform: translateX(-50%) translateY(-65%)}
+    50% {transform: translateX(-50%) translateY(-50%)}
+    75% {transform: translateX(-50%) translateY(-35%)}
+    100% {transform: translateX(-50%) translateY(-50%)}
+  }
+  
+  button:focus {
+    outline: none;
+  }
+
+  /* ********************************* BURGER + RESPONSIVE ************************** */
