@@ -7,12 +7,14 @@ $category = $result["data"]["category"];
 <?= $category->getLabel() ?>
 </h1>
 
-<?php if (!App\Session::getUser()) { 
-    // Affiche un message d'erreur
-    echo "Veuillez vous connecter pour accéder à cette page.";
-    // Arrête l'exécution du code
+<?php 
+if (!App\Session::getUser()) { 
+    $errorMessage = "Veuillez vous connecter pour accéder à cette page.";
+    //urlencode est une fonction PHP qui encode une chaîne de caractères en une chaîne utilisable dans une URL.
+    header("Location: index.php?ctrl=Forum&action=listCategories&error=".urlencode($errorMessage));
     exit();
-} ?>
+} 
+?>
 
 <!-- On va chercher dans le construct getLabel avec la $category qui a accées aux data -->
 <?php if (!$topics) { ?>

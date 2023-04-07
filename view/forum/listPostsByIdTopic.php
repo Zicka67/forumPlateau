@@ -42,6 +42,7 @@ if (!$posts) { ?>
                     <th class="small">par <?= ucfirst($post->getUser())?> le <?= $post->getDatePost() ?></th>
                 </tr>
             </table>
+            <?php if (App\Session::isAdmin()) { ?>
             <div class="supprimerPost">
             <a  href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>">Supprimer</a>
             </div>
@@ -68,6 +69,6 @@ if (!$posts) { ?>
         </div>
     </div>
     </div>
-<?php
+    <?php } ?>
 
 
