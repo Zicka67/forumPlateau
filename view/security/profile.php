@@ -21,7 +21,7 @@
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <header>
-                <nav>
+                <nav class="profil-nav ">
                     <div id="nav-left">
                         <a href="index.php">Accueil</a>
                         <a href="index.php?ctrl=Forum&action=listCategories">Categories</a>
@@ -40,7 +40,7 @@
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a href="index.php?ctrl=Security&action=showProfile"><span class="fas fa-user"></span> <?= App\Session::getUser()?></a>
+                            <a href="index.php?ctrl=Security&action=showProfile"><span class="fas fa-user"></span> <?= ucfirst(App\Session::getUser()) ?></a>
                             <a href="index.php?ctrl=Security&action=logout">Déconnexion</a>
                             <?php
                         }
@@ -68,7 +68,10 @@
                          <p>Email : <?= $user->getEmail(); ?></p>
                          <p>Role : <?= $user->getRole(); ?></p>
                          <p>Date d'inscription : <?= $user->getDateCreate(); ?></p>
-                         <!-- <?php var_dump($user->getStatus());die; ?> -->
+
+
+                        
+                          <!-- <?php var_dump($user->getId());die; ?>  -->
                          <?php
                          // Vérifie si l'utilisateur est banni
                          if ($user->getStatus() == 0) {

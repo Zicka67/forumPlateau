@@ -30,6 +30,10 @@ li{
 
 /* ***************** HEADER ***************** */
 
+header {
+    height: 200px;
+}
+
 header nav {
     
     width: 100%;
@@ -43,17 +47,19 @@ header nav {
    margin-left: 2vw;
 }
 
-.nav-left a{
-    /* margin-right: 15px;
-    font-weight: bold; */
+.nav-left ul li a{
+    font-size: 1vw;
 }
 
 .nav-right {
-    display: flex;
     margin-top: 2vw;
-    margin-right: 3vw;
-    /* background-color: bisque; */
-    width: 12vw;
+    margin-right: 4vw;
+    display: flex;
+
+ }
+
+ .nav-right li a{
+    font-size: 1vw;
  }
 
 #nav-right a{
@@ -145,9 +151,11 @@ input {
     
 }
 
-/* label {
-    
-} */
+.profil-nav {
+    margin: 2.5vw auto 0 auto;
+    width: 90%;
+
+}
 
 #button {
     border-color: transparent;
@@ -646,7 +654,6 @@ tbody {
 .absolute {
     display: flex;
     position: absolute;
-    top: 270px;
 }
 
 .containerMain {
@@ -979,6 +986,7 @@ footer {
 
 .menu-navigation {
     float: right;
+    font-weight: bold;
 }
 
 .menu-navigation ul {
@@ -993,7 +1001,7 @@ footer {
 
 .menu-navigation a {
     text-decoration: none;
-    color: #000;
+    color: rgb(45, 75, 248);
 }
 
 
@@ -1025,9 +1033,26 @@ footer {
     .nav-right {
         display: flex;
         flex-direction: column;
-        margin-top: 2vw;
-        margin-right: 3vw;
+        margin-top: 1.5vw;
+        margin-left: 2vw;
         /* background-color: bisque; */
         width: 12vw;
+     }
+
+     .nav-left ul li a{
+        font-size:2vw;
+     }
+
+     .nav-right ul li a{
+        font-size:2vw;
+     }
+
+     .nav-right ul li a span{
+        font-size: 1.5vw;
+        align-items: center;
+     }
+
+     .nav-left {
+        margin-bottom: -12px;
      }
 }

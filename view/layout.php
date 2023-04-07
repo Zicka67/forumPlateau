@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">-->
     <title>FORUM</title>
-    <script src="public/script/script.js"></script>
 </head>
 <body>
     <div id="wrapper"> 
@@ -73,30 +72,15 @@
         <button class="noselect toTop"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z"/></svg></button>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
+        <script src="public/script/script.js"></script>
+
     <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous">
     </script>
+
     <script>
-
-document.querySelector(".menu-burger").addEventListener("click", function() {
-    const nav = document.querySelector(".menu-navigation");
-    const burger = document.querySelectorAll(".ligne-burger");
-  
-    nav.classList.toggle("menu-navigation-active");
-    
-    burger[0].classList.toggle("ligne-burger-rotate1");
-    burger[1].classList.toggle("ligne-burger-hidden");
-    burger[2].classList.toggle("ligne-burger-rotate2");
-  
-    if (nav.style.display === "none") {
-      nav.style.display = "block";
-    } else {
-      nav.style.display = "none";
-    }
-  });
-
 
         $(document).ready(function(){
             $(".message").each(function(){
@@ -124,9 +108,6 @@ document.querySelector(".menu-burger").addEventListener("click", function() {
                 content_css: '//www.tiny.cloud/css/codepen.min.css'
             });
         })
-
-        
-
         /*
         $("#ajaxbtn").on("click", function(){
             $.get(
