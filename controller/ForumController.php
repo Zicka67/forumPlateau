@@ -176,26 +176,7 @@ class ForumController extends AbstractController implements ControllerInterface
                     $this->redirectTo("forum", "listCategories");
                 }
 
-                // public function testSupprimerCategory()
-                // {
-                    
-                //     // Vérifie que l'utilisateur est connecté et qu'il est admin
-                //     $user = Session::getUser();
-                //     if (!$user || !$user->hasRole('admin')) {
-                //         // Redirige vers une page d'erreur ou de connexion
-                //         $this->redirectTo("forum", "listCategories");
-                //     }
-                    
-                //     // Récupére l'ID de la catégorie à supprimer depuis les paramètres GET
-                //     $categoryId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
-                //     // var_dump($categoryId); die ;
-                //     // Créer un objet de CategoryManager et appele la fonction deleteCategory
-                //     $categoryManager = new CategoryManager();
-                //     $categoryManager->testDeleteAll($categoryId);
-                    
-                //     // Redirige vers la liste des catégory
-                //     $this->redirectTo("forum", "listCategories");
-                // }
+            
 
 
                 

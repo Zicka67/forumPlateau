@@ -110,7 +110,7 @@ final class Topic extends Entity{
         
         public function isClosed()
         {
-                return $this->closed == 0;
+                return $this->closed == 1;
         }
         
         /**
