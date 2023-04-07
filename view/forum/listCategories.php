@@ -3,7 +3,12 @@ $categories = $result["data"]["categories"];
 ?>
 
 <h1 class="categoryList">liste des categories</h1>
-
+<?php 
+if (isset($_GET['error'])) { 
+    $errorMessage = $_GET['error'];
+    echo "<p>$errorMessage</p>";
+}
+?>
 
 
 <?php
