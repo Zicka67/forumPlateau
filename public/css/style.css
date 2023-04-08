@@ -58,17 +58,6 @@ header nav {
 
  }
 
- .nav-right li a{
-    font-size: 1vw;
- }
-
-#nav-right a{
-    margin: 0 10px 0 10px;
-    font-weight: bold;
-}
-
-
-
 /* ************************* WRAPPER ****************** */
 
 .wrapper {
@@ -1037,18 +1026,19 @@ footer {
         margin-left: 2vw;
         /* background-color: bisque; */
         width: 12vw;
+        font-size: 1vw;
      }
 
-     .nav-left ul li a{
+     .nav-left ul li {
         font-size:2vw;
      }
 
-     .nav-right ul li a{
-        font-size:2vw;
+     .nav-right ul li {
+        font-size:5vw;
      }
 
      .nav-right ul li a span{
-        font-size: 1.5vw;
+        /* font-size: 1.5vw; */
         align-items: center;
      }
 
