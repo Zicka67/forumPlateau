@@ -232,8 +232,13 @@ class SecurityController extends AbstractController implements ControllerInterfa
             {
                 // Vérifie si l'utilisateur est connecté
                 if (isset($_SESSION["user"])) {
+                    $userManager = new UserManager();
                     // Récupère l'utilisateur connecté
                     $user = $_SESSION["user"];
+                    $user->setLastPost($userManager->getLastPost($user->getId()));
+                    $user->setCountPost($userManager->countPost($user->getId()));
+                    
+                    // var_dump($user); die;
                     // Charge la vue profile.php en passant les informations de l'utilisateur
                     require_once("view/security/profile.php");
                 } else {
