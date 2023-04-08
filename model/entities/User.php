@@ -15,6 +15,8 @@ final class User extends Entity
         private $email;
         private $role;
         private $status;
+        private $lastPost;
+        private $countPost;
 
         public function __construct($data)
         {
@@ -158,6 +160,36 @@ final class User extends Entity
         public function setStatus($status): self
         {
                 $this->status = $status;
+
+                return $this;
+        }
+
+        public function setLastPost($lastPost): self
+        {
+                $this->lastPost = $lastPost;
+
+                return $this;
+        }
+
+        public function getLastPost()
+        {
+                return $this->lastPost;
+        }
+
+        /**
+         * Get the value of countPost
+         */
+        public function getCountPost()
+        {
+                return $this->countPost;
+        }
+
+        /**
+         * Set the value of countPost
+         */
+        public function setCountPost($countPost): self
+        {
+                $this->countPost = $countPost;
 
                 return $this;
         }
