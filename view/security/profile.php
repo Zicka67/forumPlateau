@@ -68,9 +68,22 @@
                          <p>Email : <?= $user->getEmail(); ?></p>
                          <p>Role : <?= $user->getRole(); ?></p>
                          <p>Date d'inscription : <?= $user->getDateCreate(); ?></p>
+                        <div>
+                            
+                            <h2>dernier post : <?php if($user->getLastPost()) { 
+                                echo $user->getLastPost()["text"];
+                            } else {
+                                echo "Aucun post";
+                            } ?></h2>
+                        </div>
 
+                        <div>
+                            <h2>Nombre de post : <?php
+                                echo $user->getCountPost(); ?>
+                            </h2>
+                        </div>
 
-                        
+  
                           <!-- <?php var_dump($user->getId());die; ?>  -->
                          <?php
                          // Vérifie si l'utilisateur est banni
