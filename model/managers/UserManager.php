@@ -103,5 +103,26 @@ class UserManager extends Manager{
         WHERE id_user  = :id";
         DAO::update($sql, ['id' => $id]);
     }
-    
+
+    public function getLastPost($id) :array {
+        $sql = "SELECT *
+        FROM post
+        WHERE user_id = :id
+        ORDER BY datePost DESC
+        LIMIT 1";
+        $lastPost =  DAO::select($sql, ['id'=> $id]);
+        return $lastPost != null ? $lastPost[0] : null;
+    }
+
+    //coalesce(count(id_post),0) retun 0 si aucune donnée trouvée 
+    public function countPost ($id) {
+        
+        $sql = " SELECT coalesce(count(id_post),0) AS nbPost    
+        FROM post
+        WHERE user_id = :id
+        ";
+        $countPost = DAO::select($sql, ["id"=> $id]);
+        return $countPost[0]["nbPost"];
+    }
+     
 }
